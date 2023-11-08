@@ -4,7 +4,7 @@ import IRace from "../interfaces/IRace";
 
 const RacesService = (  //Service har ansvaret for å kommunisere med APIet, og returnerer dataen som blir hentet fra APIet.
     () => {
-        const racesEndpoint = "http://localhost:5014/api/Races";    //URLen til APIet
+        const racesEndpoint = "http://localhost:5014/api/Races";    //URLen til APIet - Finne ut av hvordan vi kan rette det med at man får forksjellige porter på forskjellige maskiner. 
 
         const getAllRaces = async () => {
             try {

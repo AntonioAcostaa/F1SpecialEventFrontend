@@ -4,7 +4,7 @@ import ITeam from "../interfaces/ITeam";
 
 const TeamsService = (  //Service har ansvaret for å kommunisere med APIet, og returnerer dataen som blir hentet fra APIet.
     () => {
-        const teamsEndpoint = "http://localhost:5014/api/Teams"; //URLen til APIet
+        const teamsEndpoint = "http://localhost:5014/api/Teams"; //URLen til APIet - Finne ut av hvordan vi kan rette det med at man får forksjellige porter på forskjellige maskiner. 
 
         const getAllTeams = async () => {
             try {

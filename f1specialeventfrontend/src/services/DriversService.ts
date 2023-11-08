@@ -4,7 +4,7 @@ import IDriver from "../interfaces/IDriver";
 
 const DriversService = (    //Service har ansvaret for å kommunisere med APIet, og returnerer dataen som blir hentet fra APIet.
     () => {
-        const driversEndpoint = "http://localhost:5014/api/Drivers";    //URLen til APIet
+        const driversEndpoint = "http://localhost:5014/api/Drivers";    //URLen til APIet - Finne ut av hvordan vi kan rette det med at man får forksjellige porter på forskjellige maskiner. 
 
         const getAllDrivers = async () => {
             try {
