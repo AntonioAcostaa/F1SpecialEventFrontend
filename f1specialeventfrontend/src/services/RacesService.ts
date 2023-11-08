@@ -1,0 +1,98 @@
+import axios from "axios";
+import IRace from "../interfaces/IRace";
+
+
+const RacesService = (  //Service har ansvaret for å kommunisere med APIet, og returnerer dataen som blir hentet fra APIet.
+    () => {
+        const racesEndpoint = "http://localhost:5014/api/Races";    //URLen til APIet
+
+        const getAllRaces = async () => {
+            try {
+                const response = await axios.get(racesEndpoint);
+                if (response.status === 200) {
+                    return response.data;
+                } else {
+                    return [];
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+        const getRaceById = async (id: string) => {
+            try {
+                const response = await axios.get(`${racesEndpoint}/${id}`);
+                if (response.status === 200) {
+                    return response.data;
+                } else {
+                    return [];
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+        const getRaceByName = async (name: string) => {
+            try {
+                const response = await axios.get(`${racesEndpoint}/name/${name}`);
+                if (response.status === 200) {
+                    return response.data;
+                } else {
+                    return [];
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+        const postRace = async (newRace: IRace) => {
+            try {
+                const response = await axios.post(racesEndpoint, newRace);
+                if (response.status === 201) {
+                    return response.data;
+                } else {
+                    return "Failed to post race"
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+        const putRace = async (updatedRace: IRace) => {
+            try {
+                const result = await axios.put(`${racesEndpoint}/${updatedRace.id}`, updatedRace);
+                if (result.status === 204) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch(err) {
+                console.log(err);
+            }
+        }
+
+        const deleteRace = async (id: string) => {
+            try {
+                const result = await axios.delete(`${racesEndpoint}/${id}`);
+                if (result.status === 204) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch(err) {
+                console.log(err);
+            }
+        }
+
+        return {
+            getAllRaces,
+            getRaceById,
+            getRaceByName,
+            postRace,
+            putRace,
+            deleteRace
+        }
+    }
+)();
+
+export default RacesService;

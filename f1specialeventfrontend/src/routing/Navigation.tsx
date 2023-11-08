@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-const Navigation = () => {
+const Navigation = () => {      //Navigasjons-komponenten som skal benyttes på alle sider for å navigere mellom dem
     return (
         <ul>
             <li><Link to="/">Home</Link></li>
