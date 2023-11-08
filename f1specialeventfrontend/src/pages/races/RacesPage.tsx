@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import RacesService from '../services/RacesService';
-import IRace from '../interfaces/IRace';
+import RacesService from '../../services/RacesService';
+import IRace from '../../interfaces/IRace';
 import format from 'date-fns/format';
 
 const RacesPage = () => {

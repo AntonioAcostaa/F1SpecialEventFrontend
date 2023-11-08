@@ -1,6 +1,6 @@
 import { useState } from "react";
-import TeamsService from "../services/TeamsService";
-import ITeam from "../interfaces/ITeam";
+import TeamsService from "../../services/TeamsService";
+import ITeam from "../../interfaces/ITeam";
 
 const TeamsPage = () => {
 
