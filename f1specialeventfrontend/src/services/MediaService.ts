@@ -21,8 +21,11 @@ const MediaService = (() => {
                 method: 'POST',
                 data: formData,
                 headers: { 'Content-Type': 'multipart/form-data' },
-            });
+            }).catch((error) => {
+                alert(`Image upload failed ${error.response.data}`);
+            })
             formData.delete('formFile');
+
         }
     };
 
@@ -40,6 +43,8 @@ const MediaService = (() => {
                 method: 'POST',
                 data: formData,
                 headers: { 'Content-Type': 'multipart/form-data' },
+            }).catch((error) => {
+                alert(`Image upload failed ${error.response.data}`);
             });
             formData.delete('formFile');
         }
