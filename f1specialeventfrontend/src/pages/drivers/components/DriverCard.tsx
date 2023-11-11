@@ -2,9 +2,9 @@ import IDriver from "../../../interfaces/IDriver";
 
 const DriverCard = ({ driver }: { driver: IDriver }) => {
     return (
-        <article className="card col-12 col-md-6 col-lg-4 align-content-center border-4 ">
+        <article className="card col-12 col-md-6 col-lg-4 align-content-center">
             <img
-                src={`/src/assets/images/temp/${driver.image}`}
+                src={`http://localhost:5014/images/${driver.image}`}
                 className="card-img-top"
                 alt={`Portret image. PNG. ${driver.name}`}
             />

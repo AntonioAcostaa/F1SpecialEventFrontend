@@ -1,9 +1,9 @@
 interface IDriver {     //Interfacet sikrer typesafety for IDriver-objekter, at typene alltid stemmer over ends med forventet data i backend.
-    id: number;
+    id?: number;
     name : string;
     age : number;
     nationality : string;
-    image : string;
+    image : string | undefined;
 }
 
 export default IDriver;
