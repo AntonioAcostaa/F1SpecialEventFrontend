@@ -57,92 +57,53 @@ const DriversPage = () => {
     return (
         <>
             <div className="container p-5">
+                <div className="col-12 mx-auto text-center rounded p-5 border-top border-5 border-danger border-end m-5">
+                    <h1>F1 Drivers 2023</h1>
+                </div>
+                <section>
+                    <h3>Add new driver</h3>
+                    <div>
+                        <label>Name</label>
+                        <input
+                            name="name"
+                            onChange={handleChange}
+                            type="text"
+                        />
+                    </div>
+                    <div>
+                        <label>Age</label>
+                        <input
+                            name="age"
+                            onChange={handleChange}
+                            type="number"
+                        />
+                    </div>
+                    <div>
+                        <label>Nationality</label>
+                        <input
+                            name="nationality"
+                            onChange={handleChange}
+                            type="text"
+                        />
+                    </div>
+                    <div>
+                        <label>Image</label>
+                        <input
+                            name="image"
+                            onChange={handleChange}
+                            type="file"
+                        />
+                    </div>
+                    <input
+                        onClick={saveDriver}
+                        type="button"
+                        value="Lagre serie"
+                    />
+                </section>
                 <div className="container">
                     {drivers.length !== 0 && <DriverList drivers={drivers} />}
                 </div>
-                <section>
-                    <div className="col-12 mx-auto ">
-                        <div className="border shadow p-3 rounded h-100 text-center">
-                            <h3>Legg til ny sjåfør</h3>
-                            <div>
-                                <label>id</label>
-                                <input
-                                    name="id"
-                                    onChange={handleChange}
-                                    type="text"
-                                />
-                            </div>
-                            <div>
-                                <label>Name</label>
-                                <input
-                                    name="name"
-                                    onChange={handleChange}
-                                    type="text"
-                                />
-                            </div>
-                            <div>
-                                <label>Age</label>
-                                <input
-                                    name="age"
-                                    onChange={handleChange}
-                                    type="text"
-                                />
-                            </div>
-                            <div>
-                                <label>Nationality</label>
-                                <input
-                                    name="nationality"
-                                    onChange={handleChange}
-                                    type="text"
-                                />
-                            </div>
-                            <div>
-                                <label>Bilde</label>
-                                <input
-                                    name="image"
-                                    onChange={handleChange}
-                                    type="file"
-                                />
-                            </div>
-                            <input
-                                onClick={saveDriver}
-                                type="button"
-                                value="Lagre Informasjon"
-                            />
-                        </div>
-
-                        <div className="shadow p-3 rounded ">
-                            {drivers.length !== 0 && (
-                                <DriverList drivers={drivers} />
-                            )}
-                        </div>
-                    </div>
-                </section>
             </div>
-            <section>
-                <h3>Add new driver</h3>
-                <div>
-                    <label>Name</label>
-                    <input name="name" onChange={handleChange} type="text" />
-                </div>
-                <div>
-                    <label>Age</label>
-                    <input name="age" onChange={handleChange} type="number" />
-                </div>
-                <div>
-                    <label>Nationality</label>
-                    <input
-                        name="nationality"
-                        onChange={handleChange}
-                        type="text"
-                    />
-                </div>
-                <div>
-                    <label>Image</label>
-                    <input name="image" onChange={handleChange} type="file" />
-                </div>
-                <input onClick={saveDriver} type="button" value="Lagre serie" />
-            </section>
         </>
     );
 };
