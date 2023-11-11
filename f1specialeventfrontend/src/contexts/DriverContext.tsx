@@ -29,12 +29,12 @@ export const DriverContextProvider: FC<Props> = ({ children }) => {
 
     const removeDriver = (id: number) => {
         DriversService.deleteDriver(id);
-        getAllDrivers();
+        getAllDrivers;
     }
 
     const updateDriver = (driver: IDriver) => {
         DriversService.putDriver(driver);
-        getAllDrivers();
+        getAllDrivers;
     }
 
     useEffect(() => {
