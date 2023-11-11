@@ -3,7 +3,7 @@ import DriverCard from "./DriverCard";
 
 const DriverList = ({drivers} : {drivers: IDriver[]}) => {
     return (
-        <section className="row">
+        <section className="row gap-1">
             { drivers && drivers.map((driver) => {
                 return(
                     <DriverCard key={driver.id} driver={driver} />
