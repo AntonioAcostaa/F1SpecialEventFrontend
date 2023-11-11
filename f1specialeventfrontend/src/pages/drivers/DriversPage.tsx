@@ -57,10 +57,13 @@ const DriversPage = () => {
     }, []);
 
     return (
-        <div className="container">
+        <div className="container w-100">
+            <div className="col-12 mx-auto text-center p-5 border-top border-4 border-danger border-end m-5">
+                <h1>F1 Drivers 2023</h1>
+            </div>
             <section>
                 <div className="col-12 mx-auto ">
-                    <div className="border shadow p-3 rounded h-100  text-center">
+                    <div className="border shadow p-3 rounded h-100 text-center">
                         <h3>Legg til ny sjåfør</h3>
                         <div>
                             <label>id</label>
@@ -109,7 +112,7 @@ const DriversPage = () => {
                         />
                     </div>
 
-                    <div className="border shadow p-3 rounded">
+                    <div className="shadow p-3 rounded ">
                         {drivers.length !== 0 && (
                             <DriverList drivers={drivers} />
                         )}

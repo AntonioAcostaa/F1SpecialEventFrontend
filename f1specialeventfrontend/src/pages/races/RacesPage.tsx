@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import RacesService from '../../services/RacesService';
-import IRace from '../../interfaces/IRace';
-import format from 'date-fns/format';
+import { useEffect, useState } from "react";
+import RacesService from "../../services/RacesService";
+import IRace from "../../interfaces/IRace";
+//import format from "date-fns/format";
+import RaceList from "./components/RaceList";
 
 const RacesPage = () => {
     const [races, setRaces] = useState<IRace[]>([]);
@@ -16,18 +17,18 @@ const RacesPage = () => {
             });
     };
 
+    useEffect(() => {
+        getAllRaces();
+    }, []);
     return (
-        <div className='container'>
-            <h3>Races</h3>
-            <button onClick={getAllRaces}>Get all races</button>
-            {races.length !== 0 &&
-                races.map((race) => {
-                    return (
-                        <div key={race.id}>
-                            {race.id} {race.grandPrix} {race.winnerName} Time: {format(new Date(race.winnerTime), 'HH:mm:ss')} Laps: {race.numberOfLaps}
-                        </div>
-                    );
-                })}
+        <div className="container">
+            <div className="col-12 mx-auto text-center p-5 border-top border-4 border-danger border-end m-5">
+                <h1>F1 Race Results 2023</h1>
+            </div>
+
+            <div className="col-12 text-start">
+                {races.length !== 0 && <RaceList races={races} />}
+            </div>
         </div>
     );
 };
