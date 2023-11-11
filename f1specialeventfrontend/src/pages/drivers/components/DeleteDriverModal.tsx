@@ -1,15 +1,16 @@
 import { ChangeEvent, useState } from 'react';
 import ReactModal from 'react-modal';
-import DriversService from '../../../services/DriversService';
 
 const DeleteDriverModal = ({
     isOpen,
     setIsOpen,
     getAllDrivers,
+    removeDriver,
 }: {
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
     getAllDrivers: () => void;
+    removeDriver: (id: number) => void;
 }) => {
     const [id, setId] = useState<number>(0);
 
@@ -22,7 +23,7 @@ const DeleteDriverModal = ({
     };
 
     const deleteDriver = () => {
-        DriversService.deleteDriver(id);
+        removeDriver(id);
         setIsOpen(!isOpen);
     };
 

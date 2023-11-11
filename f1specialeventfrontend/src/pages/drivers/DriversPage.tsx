@@ -11,7 +11,7 @@ const DriversPage = () => {
     const [deleteDriverModalIsOpen, setDeleteDriverModalIsOpen] = useState(false);
     const [updateDriverModalIsOpen, setUpdateDriverModalIsOpen] = useState(false);
 
-    const {drivers, getAllDrivers, addDriver, updateDriver} = useContext(DriverContext) as IDriverContext;
+    const {drivers, getAllDrivers, addDriver, removeDriver, updateDriver} = useContext(DriverContext) as IDriverContext;
 
     return (
         <>
@@ -33,7 +33,7 @@ const DriversPage = () => {
                 </div>
             </div>
             {addDriverModalIsOpen && <AddDriverModal isOpen={addDriverModalIsOpen} setIsOpen={setAddDriverModalIsOpen} getAllDrivers={() => getAllDrivers()} addDriver={addDriver}/>}
-            {deleteDriverModalIsOpen && <DeleteDriverModal isOpen={deleteDriverModalIsOpen} setIsOpen={setDeleteDriverModalIsOpen} getAllDrivers={() => getAllDrivers()}/>}
+            {deleteDriverModalIsOpen && <DeleteDriverModal isOpen={deleteDriverModalIsOpen} setIsOpen={setDeleteDriverModalIsOpen} getAllDrivers={() => getAllDrivers()} removeDriver={removeDriver}/>}
             {updateDriverModalIsOpen && <EditDriverModal isOpen={updateDriverModalIsOpen} setIsOpen={setUpdateDriverModalIsOpen} getAllDrivers={() => getAllDrivers()} updateDriver={updateDriver}/>}
         </>
     );
