@@ -1,15 +1,17 @@
 import { ChangeEvent, useState } from 'react';
 import ReactModal from 'react-modal';
-import MediaService from '../../../services/MediaService';
+import IDriver from '../../../interfaces/IDriver';
 
 const AddDriverModal = ({
     isOpen,
     setIsOpen,
     getAllDrivers,
+    addDriver,
 }: {
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
     getAllDrivers: () => void;
+    addDriver: (driver: IDriver, image: File) => void;
 }) => {
     const [name, setName] = useState('');
     const [age, setAge] = useState<number>(0);
@@ -41,7 +43,7 @@ const AddDriverModal = ({
             nationality: nationality,
             image: image?.name,
         };
-        MediaService.postDriver(newDriver, image);
+        addDriver(newDriver, image as File)
         setIsOpen(!isOpen);
     };
 

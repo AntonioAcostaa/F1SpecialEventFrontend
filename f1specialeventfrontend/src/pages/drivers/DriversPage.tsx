@@ -1,29 +1,17 @@
-import { useEffect, useState } from "react";
-import IDriver from "../../interfaces/IDriver";
-import DriversService from "../../services/DriversService";
+import { useContext, useState } from "react";
 import DriverList from "./components/DriverList";
 import AddDriverModal from "./components/AddDriverModal";
 import DeleteDriverModal from "./components/DeleteDriverModal";
+import { DriverContext } from "../../contexts/DriverContext";
+import IDriverContext from "../../interfaces/IDriverContext";
 
 const DriversPage = () => {
-    const [drivers, setDrivers] = useState<IDriver[]>([]);
     const [addDriverModalIsOpen, setAddDriverModalIsOpen] = useState(false);
     const [deleteDriverModalIsOpen, setDeleteDriverModalIsOpen] = useState(false);
     
 
-    const getAllDrivers = () => {
-        DriversService.getAllDrivers()
-            .then((response) => {
-                setDrivers(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    };
+    const {drivers, getAllDrivers, addDriver} = useContext(DriverContext) as IDriverContext;
 
-    useEffect(() => {
-        getAllDrivers();
-    }, []);
 
     return (
         <>
@@ -41,7 +29,7 @@ const DriversPage = () => {
                     {drivers && drivers.length !== 0 && <DriverList drivers={drivers} />}
                 </div>
             </div>
-            {addDriverModalIsOpen && <AddDriverModal isOpen={addDriverModalIsOpen} setIsOpen={setAddDriverModalIsOpen} getAllDrivers={() => getAllDrivers()}/>}
+            {addDriverModalIsOpen && <AddDriverModal isOpen={addDriverModalIsOpen} setIsOpen={setAddDriverModalIsOpen} getAllDrivers={() => getAllDrivers()} addDriver={addDriver}/>}
             {deleteDriverModalIsOpen && <DeleteDriverModal isOpen={deleteDriverModalIsOpen} setIsOpen={setDeleteDriverModalIsOpen} getAllDrivers={() => getAllDrivers()}/>}
         </>
     );
