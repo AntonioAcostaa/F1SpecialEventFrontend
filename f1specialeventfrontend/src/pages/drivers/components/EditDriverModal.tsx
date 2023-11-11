@@ -2,17 +2,18 @@ import { ChangeEvent, useState } from 'react';
 import ReactModal from 'react-modal';
 import IDriver from '../../../interfaces/IDriver';
 
-const AddDriverModal = ({
+const EditDriverModal = ({
     isOpen,
     setIsOpen,
     getAllDrivers,
-    addDriver,
+    updateDriver,
 }: {
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
     getAllDrivers: () => void;
-    addDriver: (driver: IDriver, image: File) => void;
+    updateDriver: (updatedDriver: IDriver) => void;
 }) => {
+    const [id, setId] = useState<number>(0);
     const [name, setName] = useState('');
     const [age, setAge] = useState<number>(0);
     const [nationality, setNationality] = useState('');
@@ -20,6 +21,9 @@ const AddDriverModal = ({
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         switch (e.currentTarget.name) {
+            case 'id':
+                setId(parseInt(e.currentTarget.value));
+                break;
             case 'name':
                 setName(e.currentTarget.value);
                 break;
@@ -37,13 +41,14 @@ const AddDriverModal = ({
     };
 
     const saveDriver = () => {
-        const newDriver = {
+        const updatedDriver = {
+            id: id,
             name: name,
             age: age,
             nationality: nationality,
             image: image?.name,
         };
-        addDriver(newDriver, image as File)
+        updateDriver(updatedDriver)
         setIsOpen(!isOpen);
     };
 
@@ -52,7 +57,9 @@ const AddDriverModal = ({
     return (
         <ReactModal isOpen={isOpen} onRequestClose={() => setIsOpen(!isOpen)} onAfterClose={() => getAllDrivers()}>
             <form>
-                <h3>Add new driver</h3>
+                <h3>Edit driver</h3>
+                <label className='form-label'>ID</label>
+                <input name='id' onChange={handleChange} type='number' className='form-control' />
                 <label className='form-label'>Name</label>
                 <input name='name' onChange={handleChange} type='text' className='form-control' />
                 <label className='form-label'>Age</label>
@@ -74,4 +81,4 @@ const AddDriverModal = ({
     );
 };
 
-export default AddDriverModal;
+export default EditDriverModal;

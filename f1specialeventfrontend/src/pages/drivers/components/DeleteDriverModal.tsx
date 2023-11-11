@@ -26,6 +26,8 @@ const DeleteDriverModal = ({
         setIsOpen(!isOpen);
     };
 
+    ReactModal.setAppElement('#root');
+
     return (
         <ReactModal isOpen={isOpen} onRequestClose={() => setIsOpen(!isOpen)} onAfterClose={() => getAllDrivers()}>
             <form>
@@ -34,10 +36,10 @@ const DeleteDriverModal = ({
                 <input name='id' onChange={handleChange} type='number' className='form-control' />
             </form>
             <div className='d-flex justify-content-between mt-2'>
-            <button onClick={deleteDriver} type='button' className='btn btn-primary'>
+            <button onClick={deleteDriver} type='button' className='btn btn-danger'>
                 Delete driver (Non reversable)
             </button>
-            <button className='btn btn-primary' onClick={() => setIsOpen(!isOpen)}>
+            <button className='btn btn-danger' onClick={() => setIsOpen(!isOpen)}>
                 Close
             </button>
             </div>
