@@ -1,1 +1,0 @@
-//Her må vi finne en måte for hvordan vi kan implementere en context.
