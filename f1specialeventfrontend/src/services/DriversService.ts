@@ -44,12 +44,13 @@ const DriversService =
             }
         };
 
-        const postDriver = async (newDriver: IDriver) => {
+        const postDriver = async (newDriver: IDriver, image: File) => {
             try {
                 const response = await axios.post(driversEndpoint, newDriver);
                 const formData = new FormData();
-                formData.append("formFile", newDriver);
+                formData.append("formFile", image);
 
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 const uploadResult = await axios({
                     url: imageEndpoint,
                     method: "POST",
@@ -84,7 +85,7 @@ const DriversService =
             }
         };
 
-        const deleteDriver = async (id: string) => {
+        const deleteDriver = async (id: number) => {
             try {
                 const result = await axios.delete(`${driversEndpoint}/${id}`);
                 if (result.status === 204) {
