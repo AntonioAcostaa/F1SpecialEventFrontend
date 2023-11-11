@@ -1,8 +1,13 @@
 const HomePage = () => {
     return (
-        <div className="container">
-            <div className="col-12 mx-auto text-center p-5 border-top border-4 border-danger border-end m-5">
-                <h1>F1 Homepage 2023</h1>
+        <div className="position-relative">
+            <img
+                src="./src/assets/images/ferrarivredbull.png"
+                alt="bg-img-home"
+                className="w-100 opacity-75"
+            />
+            <div className="position-absolute top-0 start-50 translate-middle">
+                <p className="text-light">test</p>
             </div>
         </div>
     );
