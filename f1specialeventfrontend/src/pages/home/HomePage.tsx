@@ -1,13 +1,15 @@
 const HomePage = () => {
     return (
-        <div className="position-relative">
-            <img
-                src="./src/assets/images/ferrarivredbull.png"
-                alt="bg-img-home"
-                className="w-100 opacity-75"
-            />
-            <div className="position-absolute top-0 start-50 translate-middle">
-                <p className="text-light">test</p>
+        <div
+            className='p-5 text-center bg-image rounded-3 align-items-center d-flex flex-column justify-content-center'
+            style={{backgroundImage: `url(./src/assets/images/ferrarivredbull2.png)`, height: "380px"}}>
+            <div className='mask' style={{backgroundColor: "rgba(0, 0, 0, 0.6)", width: "500px"}}>
+                <div className='d-flex justify-content-center align-items-center h-100'>
+                    <div className='text-danger'>
+                        <h1 className='mb-3'>Welcome to F1</h1>
+                        <h4 className='mb-3'>Special event manager</h4>
+                    </div>
+                </div>
             </div>
         </div>
     );
