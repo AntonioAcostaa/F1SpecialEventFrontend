@@ -32,8 +32,8 @@ export const DriverContextProvider: FC<Props> = ({ children }) => {
         getAllDrivers;
     }
 
-    const updateDriver = (driver: IDriver) => {
-        DriversService.putDriver(driver);
+    const updateDriver = (driver: IDriver, image: File) => {
+        DriversService.putDriver(driver, image);
         getAllDrivers;
     }
 

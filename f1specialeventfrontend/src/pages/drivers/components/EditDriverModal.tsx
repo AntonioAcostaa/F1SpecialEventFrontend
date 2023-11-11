@@ -11,7 +11,7 @@ const EditDriverModal = ({
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
     getAllDrivers: () => void;
-    updateDriver: (updatedDriver: IDriver) => void;
+    updateDriver: (updatedDriver: IDriver, image: File) => void;
 }) => {
     const [id, setId] = useState<number>(0);
     const [name, setName] = useState('');
@@ -48,7 +48,7 @@ const EditDriverModal = ({
             nationality: nationality,
             image: image?.name,
         };
-        updateDriver(updatedDriver)
+        updateDriver(updatedDriver, image as File)
         setIsOpen(!isOpen);
     };
 

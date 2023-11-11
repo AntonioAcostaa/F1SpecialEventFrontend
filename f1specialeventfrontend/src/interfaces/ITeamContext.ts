@@ -5,7 +5,7 @@ interface ITeamContext {
     getAllTeams: () => void;
     addTeam: (newTeam: ITeam, image: File) => void;
     removeTeam: (id: number) => void;
-    updateTeam: (updatedTeam: ITeam) => void;
+    updateTeam: (updatedTeam: ITeam, image: File) => void;
 }
 
 export default ITeamContext;

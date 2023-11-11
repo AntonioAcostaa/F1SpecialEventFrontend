@@ -72,15 +72,27 @@ const TeamsService = (  //Service har ansvaret for å kommunisere med APIet, og 
             }
         };
 
-        const putTeam = async (updatedRace: ITeam) => {
+        const putTeam = async (updatedTeam: ITeam, image: File) => {
             try {
-                const result = await axios.put(`${teamsEndpoint}/${updatedRace.id}`, updatedRace);
-                if (result.status === 204) {
-                    return true;
+                const response = await axios.put(`${teamsEndpoint}/${updatedTeam.id}`, updatedTeam);
+                const formData = new FormData();
+                formData.append("formFile", image);
+
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                const uploadResult = await axios({
+                    url: imageEndpoint,
+                    method: "POST",
+                    data: formData,
+                    headers: { "Content-Type": "multipart/form-data" },
+                });
+                formData.delete("formFile");
+
+                if (response.status === 201) {
+                    return response.data;
                 } else {
-                    return false;
+                    return "Failed to update team";
                 }
-            } catch(err) {
+            } catch (err) {
                 console.log(err);
             }
         }

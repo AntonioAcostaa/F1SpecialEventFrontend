@@ -68,17 +68,29 @@ const DriversService =
                 console.log(err);
             }
         };
-
-        const putDriver = async (updatedDriver: IDriver) => {
+        
+        const putDriver = async (updatedDriver: IDriver, image: File) => {
             try {
-                const result = await axios.put(
+                const response = await axios.put(
                     `${driversEndpoint}/${updatedDriver.id}`,
                     updatedDriver
                 );
-                if (result.status === 204) {
-                    return true;
+                const formData = new FormData();
+                formData.append("formFile", image);
+
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                const uploadResult = await axios({
+                    url: imageEndpoint,
+                    method: "POST",
+                    data: formData,
+                    headers: { "Content-Type": "multipart/form-data" },
+                });
+                formData.delete("formFile");
+
+                if (response.status === 201) {
+                    return response.data;
                 } else {
-                    return false;
+                    return "Failed to update driver";
                 }
             } catch (err) {
                 console.log(err);

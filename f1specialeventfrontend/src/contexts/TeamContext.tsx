@@ -32,8 +32,8 @@ export const TeamContextProvider: FC<Props> = ({ children }) => {
         getAllTeams;
     }
 
-    const updateTeam = (team: ITeam) => {
-        TeamsService.putTeam(team);
+    const updateTeam = (team: ITeam, image: File) => {
+        TeamsService.putTeam(team, image);
         getAllTeams();
     }
 

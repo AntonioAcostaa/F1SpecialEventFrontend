@@ -5,7 +5,7 @@ interface IDriverContext {
     getAllDrivers: () => void;
     addDriver: (newDriver: IDriver, image: File) => void;
     removeDriver: (id: number) => void;
-    updateDriver: (updatedDriver: IDriver) => void;
+    updateDriver: (updatedDriver: IDriver, image: File) => void;
 }
 
 export default IDriverContext;
