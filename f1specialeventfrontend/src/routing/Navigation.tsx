@@ -1,7 +1,14 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { ActivePageContext } from "../contexts/ActivePageContext";
+import IActivePageContext from "../interfaces/IActivePageContext";
+import { ActivePage } from "../interfaces/IActivePageContext";
 
 //Navigasjons-komponenten som skal benyttes på alle sider for å navigere mellom dem
 const Navigation = () => {
+
+    const { activePage, setActivePage } = useContext(ActivePageContext) as IActivePageContext;
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container d-flex slign-items-center">
@@ -34,32 +41,36 @@ const Navigation = () => {
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
                             <Link
-                                className="nav-link border-danger border-top border-end border-2 rounded m-2"
+                                className={activePage === ActivePage.home ? "nav-link border-danger border-top border-end border-2 rounded m-2" : "nav-link border-secondary border-top border-end border-2 rounded m-2"}
                                 to="/"
+                                onClick={() => setActivePage(ActivePage.home)}
                             >
                                 Home
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link
-                                className="nav-link border-danger border-top border-end border-2 rounded m-2"
+                                className={activePage === ActivePage.drivers ? "nav-link border-danger border-top border-end border-2 rounded m-2" : "nav-link border-secondary border-top border-end border-2 rounded m-2"}
                                 to="/drivers"
+                                onClick={() => setActivePage(ActivePage.drivers)}
                             >
                                 Drivers
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link
-                                className="nav-link border-danger border-top border-end border-2 rounded m-2"
+                                className={activePage === ActivePage.teams ? "nav-link border-danger border-top border-end border-2 rounded m-2" : "nav-link border-secondary border-top border-end border-2 rounded m-2"}
                                 to="/teams"
+                                onClick={() => setActivePage(ActivePage.teams)}
                             >
                                 Teams
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link
-                                className="nav-link border-danger border-top border-end border-2 rounded m-2"
+                                className={activePage === ActivePage.races ? "nav-link border-danger border-top border-end border-2 rounded m-2" : "nav-link border-secondary border-top border-end border-2 rounded m-2"}
                                 to="/races"
+                                onClick={() => setActivePage(ActivePage.races)}
                             >
                                 Races
                             </Link>
