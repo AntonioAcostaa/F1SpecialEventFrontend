@@ -63,7 +63,7 @@ const RacesService =
                 });
                 formData.delete("formFile");
 
-                if (response.status === 201) {
+                if (response.status === 201 && uploadResult.status === 200) {
                     return response.data;
                 } else {
                     return "Failed to post race";

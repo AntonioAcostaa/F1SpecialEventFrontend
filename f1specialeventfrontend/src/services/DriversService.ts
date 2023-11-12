@@ -46,10 +46,8 @@ const DriversService =
 
         const postDriver = async (newDriver: IDriver, image: File) => {
             try {
-                const response = await axios.post(driversEndpoint, newDriver);
                 const formData = new FormData();
                 formData.append("formFile", image);
-
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 const uploadResult = await axios({
                     url: imageEndpoint,
@@ -58,8 +56,10 @@ const DriversService =
                     headers: { "Content-Type": "multipart/form-data" },
                 });
                 formData.delete("formFile");
+                
+                const response = await axios.post(driversEndpoint, newDriver);
 
-                if (response.status === 201) {
+                if (response.status === 200 && uploadResult.status === 200) {
                     return response.data;
                 } else {
                     return "Failed to post driver";
@@ -87,7 +87,7 @@ const DriversService =
                 });
                 formData.delete("formFile");
 
-                if (response.status === 201) {
+                if (response.status === 201 && uploadResult.status === 200) {
                     return response.data;
                 } else {
                     return "Failed to update driver";

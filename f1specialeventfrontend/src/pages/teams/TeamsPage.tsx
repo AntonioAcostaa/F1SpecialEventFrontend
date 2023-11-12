@@ -1,10 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import TeamList from "./components/Teamslist";
 import { TeamContext } from "../../contexts/TeamContext";
 import ITeamContext from "../../interfaces/ITeamContext";
 import AddTeamModal from "./components/AddTeamModal";
 import DeleteTeamModal from "./components/DeleteTeamModal";
 import EditTeamModal from "./components/EditTeamModal";
+import { ActivePageContext } from "../../contexts/ActivePageContext";
+import IActivePageContext, { ActivePage } from "../../interfaces/IActivePageContext";
 
 const TeamsPage = () => {
 const [addTeamModalIsOpen, setAddTeamModalIsOpen] = useState(false);
@@ -12,6 +14,13 @@ const [deleteTeamModalIsOpen, setDeleteTeamModalIsOpen] = useState(false);
 const [updateTeamModalIsOpen, setUpdateTeamModalIsOpen] = useState(false);
 
 const {teams, getAllTeams, addTeam, removeTeam, updateTeam} = useContext(TeamContext) as ITeamContext;
+const {setActivePage} = useContext(ActivePageContext) as IActivePageContext;
+
+useEffect(() => {
+    setActivePage(ActivePage.teams);
+    getAllTeams();
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
     return (
         <div className="container p-5">

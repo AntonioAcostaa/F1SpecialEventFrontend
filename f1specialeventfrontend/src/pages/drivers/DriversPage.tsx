@@ -1,10 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import DriverList from "./components/DriverList";
 import AddDriverModal from "./components/AddDriverModal";
 import DeleteDriverModal from "./components/DeleteDriverModal";
 import { DriverContext } from "../../contexts/DriverContext";
 import IDriverContext from "../../interfaces/IDriverContext";
 import EditDriverModal from "./components/EditDriverModal";
+import { ActivePageContext } from "../../contexts/ActivePageContext";
+import IActivePageContext, { ActivePage } from "../../interfaces/IActivePageContext";
 
 const DriversPage = () => {
     const [addDriverModalIsOpen, setAddDriverModalIsOpen] = useState(false);
@@ -12,6 +14,15 @@ const DriversPage = () => {
     const [updateDriverModalIsOpen, setUpdateDriverModalIsOpen] = useState(false);
 
     const {drivers, getAllDrivers, addDriver, removeDriver, updateDriver} = useContext(DriverContext) as IDriverContext;
+    const {setActivePage} = useContext(ActivePageContext) as IActivePageContext;
+
+    useEffect(() => {
+        setActivePage(ActivePage.drivers);
+        getAllDrivers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+
 
     return (
         <>

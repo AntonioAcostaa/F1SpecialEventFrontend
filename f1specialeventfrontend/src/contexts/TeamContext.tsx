@@ -1,4 +1,4 @@
-import { useState, createContext, FC, ReactNode, useEffect } from "react";
+import { useState, createContext, FC, ReactNode } from "react";
 import ITeamContext from "../interfaces/ITeamContext";
 import ITeam from "../interfaces/ITeam";
 import TeamsService from "../services/TeamsService";
@@ -15,16 +15,17 @@ export const TeamContextProvider: FC<Props> = ({ children }) => {
     const getAllTeams = () => {
         TeamsService.getAllTeams()
         .then((response) => {
-            setTeams(response);
+                setTeams(response);
         })
         .catch((error) => {
             console.log(error);
         });
     };
 
-    const addTeam = (driver: ITeam, image: File) => {
-        TeamsService.postTeam(driver, image);
-        getAllTeams;
+    const addTeam = (newTeam: ITeam, image: File) => {
+        TeamsService.postTeam(newTeam, image).then(() => {
+                getAllTeams;
+        });
     }
 
     const removeTeam = (id: number) => {
@@ -32,14 +33,13 @@ export const TeamContextProvider: FC<Props> = ({ children }) => {
         getAllTeams;
     }
 
-    const updateTeam = (team: ITeam, image: File) => {
-        TeamsService.putTeam(team, image);
-        getAllTeams();
+    const updateTeam = (updatedTeam: ITeam, image: File) => {
+        TeamsService.putTeam(updatedTeam, image).then((response) => {
+            if(response === 200) {
+                getAllTeams;
+            }
+        });
     }
-
-    useEffect(() => {
-        getAllTeams();
-    }, []);
 
     return (
         <TeamContext.Provider value={{ teams, getAllTeams, addTeam, removeTeam, updateTeam }}>

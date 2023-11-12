@@ -1,4 +1,4 @@
-import { useState, createContext, FC, ReactNode, useEffect } from "react";
+import { useState, createContext, FC, ReactNode } from "react";
 import IDriverContext from "../interfaces/IDriverContext";
 import DriversService from "../services/DriversService";
 import IDriver from "../interfaces/IDriver";
@@ -22,24 +22,22 @@ export const DriverContextProvider: FC<Props> = ({ children }) => {
         });
     };
 
-    const addDriver = (driver: IDriver, image: File) => {
-        DriversService.postDriver(driver, image);
-        setDrivers([...drivers, driver]);
+    const addDriver = (newDriver: IDriver, image: File) => {
+        DriversService.postDriver(newDriver, image)
     }
 
     const removeDriver = (id: number) => {
         DriversService.deleteDriver(id);
-        setDrivers(drivers.filter((driver) => driver.id !== id));
-    }
-
-    const updateDriver = (driver: IDriver, image: File) => {
-        DriversService.putDriver(driver, image);
         getAllDrivers;
     }
 
-    useEffect(() => {
-        getAllDrivers();
-    }, []);
+    const updateDriver = (updatedDriver: IDriver, image: File) => {
+        DriversService.putDriver(updatedDriver, image).then((response) => {
+            if(response === 200) {
+                getAllDrivers;
+            }
+        });
+    }
 
     return (
         <DriverContext.Provider value={{ drivers, getAllDrivers, addDriver, removeDriver, updateDriver }}>
