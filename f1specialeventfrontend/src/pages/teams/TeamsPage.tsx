@@ -32,7 +32,7 @@ const {teams, getAllTeams, addTeam, removeTeam, updateTeam} = useContext(TeamCon
             </div>
             {addTeamModalIsOpen && <AddTeamModal isOpen={addTeamModalIsOpen} setIsOpen={setAddTeamModalIsOpen} getAllTeams={getAllTeams} addTeam={addTeam} />}
             {deleteTeamModalIsOpen && <DeleteTeamModal isOpen={deleteTeamModalIsOpen} setIsOpen={setDeleteTeamModalIsOpen} getAllTeams={getAllTeams} removeTeam={removeTeam} />}
-            {updateTeamModalIsOpen && <EditTeamModal isOpen={updateTeamModalIsOpen} setIsOpen={setUpdateTeamModalIsOpen} getAllTeams={getAllTeams} updateTeam={() => updateTeam} />}
+            {updateTeamModalIsOpen && <EditTeamModal isOpen={updateTeamModalIsOpen} setIsOpen={setUpdateTeamModalIsOpen} getAllTeams={getAllTeams} updateTeam={updateTeam} />}
         </div>
     );
 };
