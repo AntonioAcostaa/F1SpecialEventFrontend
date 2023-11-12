@@ -4,12 +4,10 @@ import ReactModal from 'react-modal';
 const DeleteTeamModal = ({
     isOpen,
     setIsOpen,
-    getAllTeams,
     removeTeam,
 }: {
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
-    getAllTeams: () => void;
     removeTeam: (id: number) => void;
 }) => {
     const [id, setId] = useState<number>(0);
@@ -30,7 +28,7 @@ const DeleteTeamModal = ({
     ReactModal.setAppElement('#root');
 
     return (
-        <ReactModal isOpen={isOpen} onRequestClose={() => setIsOpen(!isOpen)} onAfterClose={() => getAllTeams()}>
+        <ReactModal isOpen={isOpen} onRequestClose={() => setIsOpen(!isOpen)}>
             <form>
                 <h3>Delete team by ID</h3>
                 <label className='form-label'>Team ID</label>

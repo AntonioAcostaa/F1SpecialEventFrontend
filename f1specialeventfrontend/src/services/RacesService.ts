@@ -53,7 +53,7 @@ const RacesService =
                 const response = await axios.post(racesEndpoint, newRace);
                 const formData = new FormData();
                 formData.append("formFile", image);
-
+    
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 const uploadResult = await axios({
                     url: imageEndpoint,
@@ -62,7 +62,7 @@ const RacesService =
                     headers: { "Content-Type": "multipart/form-data" },
                 });
                 formData.delete("formFile");
-
+    
                 if (response.status === 201 && uploadResult.status === 200) {
                     return response.data;
                 } else {
@@ -72,24 +72,36 @@ const RacesService =
                 console.log(err);
             }
         };
-
-        const putRace = async (updatedRace: IRace) => {
+        
+        const putRace = async (updatedRace: IRace, image: File) => {
             try {
-                const result = await axios.put(
+                const response = await axios.put(
                     `${racesEndpoint}/${updatedRace.id}`,
                     updatedRace
                 );
-                if (result.status === 204) {
-                    return true;
+                const formData = new FormData();
+                formData.append("formFile", image);
+    
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                const uploadResult = await axios({
+                    url: imageEndpoint,
+                    method: "POST",
+                    data: formData,
+                    headers: { "Content-Type": "multipart/form-data" },
+                });
+                formData.delete("formFile");
+    
+                if (response.status === 201 && uploadResult.status === 200) {
+                    return response.data;
                 } else {
-                    return false;
+                    return "Failed to edit race";
                 }
             } catch (err) {
                 console.log(err);
             }
         };
 
-        const deleteRace = async (id: string) => {
+        const deleteRace = async (id: number) => {
             try {
                 const result = await axios.delete(`${racesEndpoint}/${id}`);
                 if (result.status === 204) {

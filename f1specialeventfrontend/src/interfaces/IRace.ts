@@ -5,7 +5,7 @@ interface IRace {
     winnerTime: Date;
     grandPrix: string;
     numberOfLaps: number;
-    image: File | undefined;
+    image: string | undefined;
 }
 
 export default IRace;

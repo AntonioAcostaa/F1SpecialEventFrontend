@@ -5,12 +5,10 @@ import ITeam from '../../../interfaces/ITeam';
 const EditTeamModal = ({
     isOpen,
     setIsOpen,
-    getAllTeams,
     updateTeam,
 }: {
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
-    getAllTeams: () => void;
     updateTeam: (updatedTeam: ITeam, image: File) => void;
 }) => {
     const [id, setId] = useState<number>(0);
@@ -55,7 +53,7 @@ const EditTeamModal = ({
     ReactModal.setAppElement('#root');
 
     return (
-        <ReactModal isOpen={isOpen} onRequestClose={() => setIsOpen(!isOpen)} onAfterClose={() => getAllTeams()}>
+        <ReactModal isOpen={isOpen} onRequestClose={() => setIsOpen(!isOpen)}>
             <form>
                 <h3>Edit team</h3>
                 <label className='form-label'>ID</label>

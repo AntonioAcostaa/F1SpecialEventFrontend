@@ -5,12 +5,10 @@ import IDriver from '../../../interfaces/IDriver';
 const EditDriverModal = ({
     isOpen,
     setIsOpen,
-    getAllDrivers,
     updateDriver,
 }: {
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
-    getAllDrivers: () => void;
     updateDriver: (updatedDriver: IDriver, image: File) => void;
 }) => {
     const [id, setId] = useState<number>(0);
@@ -55,7 +53,7 @@ const EditDriverModal = ({
     ReactModal.setAppElement('#root');
 
     return (
-        <ReactModal isOpen={isOpen} onRequestClose={() => setIsOpen(!isOpen)} onAfterClose={() => getAllDrivers()}>
+        <ReactModal isOpen={isOpen} onRequestClose={() => setIsOpen(!isOpen)}>
             <form>
                 <h3>Edit driver</h3>
                 <label className='form-label'>ID</label>

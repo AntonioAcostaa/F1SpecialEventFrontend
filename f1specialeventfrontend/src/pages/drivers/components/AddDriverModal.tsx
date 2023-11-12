@@ -5,12 +5,10 @@ import IDriver from '../../../interfaces/IDriver';
 const AddDriverModal = ({
     isOpen,
     setIsOpen,
-    getAllDrivers,
     addDriver,
 }: {
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
-    getAllDrivers: () => void;
     addDriver: (driver: IDriver, image: File) => void;
 }) => {
     const [name, setName] = useState('');
@@ -50,7 +48,7 @@ const AddDriverModal = ({
     ReactModal.setAppElement('#root');
 
     return (
-        <ReactModal isOpen={isOpen} onRequestClose={() => setIsOpen(!isOpen)} onAfterClose={() => getAllDrivers()}>
+        <ReactModal isOpen={isOpen} onRequestClose={() => setIsOpen(!isOpen)}>
             <form>
                 <h3>Add new driver</h3>
                 <label className='form-label'>Name</label>

@@ -5,12 +5,10 @@ import ITeam from '../../../interfaces/ITeam';
 const AddTeamModal = ({
     isOpen,
     setIsOpen,
-    getAllTeams,
     addTeam,
 }: {
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
-    getAllTeams: () => void;
     addTeam: (team: ITeam, image: File) => void;
 }) => {
     const [manufacturer, setManuFacturer] = useState('');
@@ -50,7 +48,7 @@ const AddTeamModal = ({
     ReactModal.setAppElement('#root');
 
     return (
-        <ReactModal isOpen={isOpen} onRequestClose={() => setIsOpen(!isOpen)} onAfterClose={() => getAllTeams()}>
+        <ReactModal isOpen={isOpen} onRequestClose={() => setIsOpen(!isOpen)}>
             <form>
                 <h3>Add new team</h3>
                 <label className='form-label'>Manufacturer</label>

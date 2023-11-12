@@ -24,7 +24,7 @@ useEffect(() => {
 
     return (
         <div className="container p-5">
-            <button className="btn btn-danger mx-1" onClick={() => setAddTeamModalIsOpen(!addTeamModalIsOpen)}>
+                <button className="btn btn-danger mx-1" onClick={() => setAddTeamModalIsOpen(!addTeamModalIsOpen)}>
                     Add team
                 </button>
                 <button className="btn btn-danger" onClick={() => setDeleteTeamModalIsOpen(!deleteTeamModalIsOpen)}>
@@ -39,9 +39,9 @@ useEffect(() => {
             <div className="container">
                 {teams && teams.length !== 0 && <TeamList teams={teams} />}
             </div>
-            {addTeamModalIsOpen && <AddTeamModal isOpen={addTeamModalIsOpen} setIsOpen={setAddTeamModalIsOpen} getAllTeams={getAllTeams} addTeam={addTeam} />}
-            {deleteTeamModalIsOpen && <DeleteTeamModal isOpen={deleteTeamModalIsOpen} setIsOpen={setDeleteTeamModalIsOpen} getAllTeams={getAllTeams} removeTeam={removeTeam} />}
-            {updateTeamModalIsOpen && <EditTeamModal isOpen={updateTeamModalIsOpen} setIsOpen={setUpdateTeamModalIsOpen} getAllTeams={getAllTeams} updateTeam={updateTeam} />}
+            {addTeamModalIsOpen && <AddTeamModal isOpen={addTeamModalIsOpen} setIsOpen={setAddTeamModalIsOpen} addTeam={addTeam} />}
+            {deleteTeamModalIsOpen && <DeleteTeamModal isOpen={deleteTeamModalIsOpen} setIsOpen={setDeleteTeamModalIsOpen} removeTeam={removeTeam} />}
+            {updateTeamModalIsOpen && <EditTeamModal isOpen={updateTeamModalIsOpen} setIsOpen={setUpdateTeamModalIsOpen} updateTeam={updateTeam} />}
         </div>
     );
 };

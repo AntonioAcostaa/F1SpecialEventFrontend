@@ -43,9 +43,9 @@ const DriversPage = () => {
                     {drivers && drivers.length !== 0 && <DriverList drivers={drivers} />}
                 </div>
             </div>
-            {addDriverModalIsOpen && <AddDriverModal isOpen={addDriverModalIsOpen} setIsOpen={setAddDriverModalIsOpen} getAllDrivers={() => getAllDrivers()} addDriver={addDriver}/>}
-            {deleteDriverModalIsOpen && <DeleteDriverModal isOpen={deleteDriverModalIsOpen} setIsOpen={setDeleteDriverModalIsOpen} getAllDrivers={() => getAllDrivers()} removeDriver={removeDriver}/>}
-            {updateDriverModalIsOpen && <EditDriverModal isOpen={updateDriverModalIsOpen} setIsOpen={setUpdateDriverModalIsOpen} getAllDrivers={() => getAllDrivers()} updateDriver={updateDriver}/>}
+            {addDriverModalIsOpen && <AddDriverModal isOpen={addDriverModalIsOpen} setIsOpen={setAddDriverModalIsOpen} addDriver={addDriver}/>}
+            {deleteDriverModalIsOpen && <DeleteDriverModal isOpen={deleteDriverModalIsOpen} setIsOpen={setDeleteDriverModalIsOpen} removeDriver={removeDriver}/>}
+            {updateDriverModalIsOpen && <EditDriverModal isOpen={updateDriverModalIsOpen} setIsOpen={setUpdateDriverModalIsOpen} updateDriver={updateDriver}/>}
         </>
     );
 };
