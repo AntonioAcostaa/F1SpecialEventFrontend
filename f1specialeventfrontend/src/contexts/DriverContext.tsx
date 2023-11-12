@@ -24,6 +24,7 @@ export const DriverContextProvider: FC<Props> = ({ children }) => {
 
     const addDriver = (newDriver: IDriver, image: File) => {
         DriversService.postDriver(newDriver, image)
+        getAllDrivers();
     }
 
     const removeDriver = (id: number) => {
@@ -32,11 +33,8 @@ export const DriverContextProvider: FC<Props> = ({ children }) => {
     }
 
     const updateDriver = (updatedDriver: IDriver, image: File) => {
-        DriversService.putDriver(updatedDriver, image).then((response) => {
-            if(response === 200) {
-                getAllDrivers;
-            }
-        });
+        DriversService.putDriver(updatedDriver, image)
+        getAllDrivers;
     }
 
     return (

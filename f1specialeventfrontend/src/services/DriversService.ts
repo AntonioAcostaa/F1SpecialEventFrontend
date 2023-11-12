@@ -46,9 +46,12 @@ const DriversService =
 
         const postDriver = async (newDriver: IDriver, image: File) => {
             try {
+                const response = await axios.post(driversEndpoint, newDriver);
+
                 const formData = new FormData();
                 formData.append("formFile", image);
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
                 const uploadResult = await axios({
                     url: imageEndpoint,
                     method: "POST",
@@ -57,7 +60,6 @@ const DriversService =
                 });
                 formData.delete("formFile");
                 
-                const response = await axios.post(driversEndpoint, newDriver);
 
                 if (response.status === 200 && uploadResult.status === 200) {
                     return response.data;
