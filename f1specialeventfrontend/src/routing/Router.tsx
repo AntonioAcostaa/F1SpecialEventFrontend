@@ -3,6 +3,7 @@ import { HomePage, DriversPage, TeamsPage, RacesPage, NotFoundPage } from '../pa
 import Navigation from './Navigation';
 import { DriverContextProvider } from '../contexts/DriverContext';
 import { TeamContextProvider } from '../contexts/TeamContext';
+import { ActivePageContextProvider } from '../contexts/ActivePageContext';
 
 //BrowserRouter er en komponent soom sørger for at React har kontroll på hva som skal åpnes hvor.
 // Navigation er en komponent som inneholder lenker til de ulike sidene i applikasjonen
@@ -10,6 +11,7 @@ import { TeamContextProvider } from '../contexts/TeamContext';
 const Router = () => {
     return (
         <BrowserRouter>
+        <ActivePageContextProvider>
             <Navigation />
             <TeamContextProvider>
                 <DriverContextProvider>
@@ -22,6 +24,7 @@ const Router = () => {
                     </Routes>
                 </DriverContextProvider>
             </TeamContextProvider>
+            </ActivePageContextProvider>
         </BrowserRouter>
     );
 };
