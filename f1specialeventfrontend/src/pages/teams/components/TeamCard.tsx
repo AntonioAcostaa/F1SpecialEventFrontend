@@ -1,9 +1,10 @@
 import ITeam from "../../../interfaces/ITeam";
+import styles from "../styles/teamList.module.css";
 
 const TeamCard = ({ team }: { team: ITeam }) => {
     return (
         <article
-            className="card mx-auto m-2 col-12 col-md-6 col-lg-4 align-content-center align-items-center"
+            className={`${styles.cardContainer} border-3 rounded shadow border-bottom border-danger mx-auto text-center p-3  m-5`}
             style={{ width: "500px", padding: 0 }}
         >
             <img
