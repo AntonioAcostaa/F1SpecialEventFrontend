@@ -2,7 +2,10 @@ import ITeam from "../../../interfaces/ITeam";
 
 const TeamCard = ({ team }: { team: ITeam }) => {
     return (
-        <article className="card col-12 col-md-6 col-lg-4 align-content-center">
+        <article
+            className="card mx-auto m-2 col-12 col-md-6 col-lg-4 align-content-center align-items-center"
+            style={{ width: "500px", padding: 0 }}
+        >
             <img
                 src={`http://localhost:5014/images/${team.image}`}
                 className="card-img-top"
