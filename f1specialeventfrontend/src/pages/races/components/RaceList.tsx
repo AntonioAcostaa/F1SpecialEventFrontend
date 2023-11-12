@@ -17,6 +17,7 @@ const RaceList: React.FC<RaceListProps> = ({ races }) => {
                     <div className="col m-2">Winner</div>
                     <div className="col m-2">Winner Time</div>
                     <div className="col m-2">Number of Laps</div>
+                    <div className="col m-2">Track</div>
                 </div>
                 {races.map((race) => (
                     <div
@@ -30,6 +31,11 @@ const RaceList: React.FC<RaceListProps> = ({ races }) => {
                             {format(new Date(race.winnerTime), "HH:mm:ss")}
                         </div>
                         <div className="col m-3">{race.numberOfLaps}</div>
+                        <img
+                            src={`http://localhost:5014/images/${race.image}`}
+                            className="card mb-3"
+                            alt={`Track image. PNG. ${race.grandPrix}`}
+                        />
                     </div>
                 ))}
             </div>
