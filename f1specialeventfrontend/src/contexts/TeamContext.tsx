@@ -23,9 +23,8 @@ export const TeamContextProvider: FC<Props> = ({ children }) => {
     };
 
     const addTeam = (newTeam: ITeam, image: File) => {
-        TeamsService.postTeam(newTeam, image).then(() => {
-                getAllTeams;
-        });
+        TeamsService.postTeam(newTeam, image)
+        getAllTeams;
     }
 
     const removeTeam = (id: number) => {
@@ -34,11 +33,8 @@ export const TeamContextProvider: FC<Props> = ({ children }) => {
     }
 
     const updateTeam = (updatedTeam: ITeam, image: File) => {
-        TeamsService.putTeam(updatedTeam, image).then((response) => {
-            if(response === 200) {
-                getAllTeams;
-            }
-        });
+        TeamsService.putTeam(updatedTeam, image)
+        getAllTeams;
     }
 
     return (

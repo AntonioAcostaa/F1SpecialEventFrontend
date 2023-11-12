@@ -34,11 +34,8 @@ export const RaceContextProvider: FC<Props> = ({ children }) => {
     }
 
     const updateRace = (updatedRace: IRace, image: File) => {
-        RacesService.putRace(updatedRace, image).then((response) => {
-            if(response === 200) {
-                getAllRaces;
-            }
-        });
+        RacesService.putRace(updatedRace, image)
+        getAllRaces;
     }
 
     return (
