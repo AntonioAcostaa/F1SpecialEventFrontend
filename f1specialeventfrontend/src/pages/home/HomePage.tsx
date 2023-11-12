@@ -16,7 +16,7 @@ const HomePage = () => {
             >
                 <div className="d-flex justify-content-center align-items-center h-100">
                     <div className="text-danger">
-                        <h1 className="mb-3">Welcome to F1</h1>
+                        <h1 className="mb-3">Welcome to Formula 1</h1>
                         <h4 className="mb-3">Special event manager</h4>
                     </div>
                 </div>
