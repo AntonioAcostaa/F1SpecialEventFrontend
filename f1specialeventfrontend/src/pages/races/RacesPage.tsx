@@ -22,7 +22,7 @@ const RacesPage = () => {
     }, []);
     return (
         <div className="container">
-            <div className="col-12 mx-auto text-center p-5 border-top border-4 border-danger border-end m-5">
+            <div className="col-12 mx-auto rounded text-center p-5 border-top border-4 border-danger border-end m-5">
                 <h1>F1 Race Results 2023</h1>
             </div>
 

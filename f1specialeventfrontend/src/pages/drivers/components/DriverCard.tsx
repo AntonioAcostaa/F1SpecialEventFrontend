@@ -1,8 +1,12 @@
 import IDriver from "../../../interfaces/IDriver";
+import styles from "../styles/driverList.module.css";
 
 const DriverCard = ({ driver }: { driver: IDriver }) => {
     return (
-        <article className="card col-12 col-md-10 col-lg-2 align-content-center" style={{width: "200px", padding: 0}}>
+        <article
+            className={`${styles.cardContainer} border-3 rounded shadow border-bottom border-danger mx-auto text-center p-3 m-1`}
+            style={{ width: "200px", padding: 0 }}
+        >
             <img
                 src={`http://localhost:5014/images/${driver.image}`}
                 className="card-img-top"

@@ -2,6 +2,7 @@
 import React from "react";
 import IRace from "../../../interfaces/IRace";
 import format from "date-fns/format";
+import styles from "../styles/raceList.module.css";
 
 interface RaceListProps {
     races: IRace[];
@@ -11,7 +12,9 @@ const RaceList: React.FC<RaceListProps> = ({ races }) => {
     return (
         <div className="container ">
             {races.map((race) => (
-                <div className="col-12 mx-auto text-center p-3 border-start shadow border-bottom border-2 rounded border-danger m-5">
+                <div
+                    className={`${styles.cardContainer} border-3 rounded shadow border-bottom border-danger mx-auto text-center p-3  m-5`}
+                >
                     <div className="row g-0">
                         <div className="col-md-4">
                             <img
@@ -22,7 +25,9 @@ const RaceList: React.FC<RaceListProps> = ({ races }) => {
                         </div>
                         <div className="col-md-8">
                             <div className="card-body">
-                                <h3 className="card-title">{race.grandPrix}</h3>
+                                <h3 className="card-title p-3">
+                                    {race.grandPrix}
+                                </h3>
                                 <br />
                                 <br />
                                 <h5 className="card-text">Winner:</h5>
