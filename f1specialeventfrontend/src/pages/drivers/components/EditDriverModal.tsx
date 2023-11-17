@@ -1,21 +1,24 @@
 import { ChangeEvent, useState } from 'react';
-import ReactModal from 'react-modal';
 import IDriver from '../../../interfaces/IDriver';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Form, Modal } from 'react-bootstrap';
 
 const EditDriverModal = ({
     isOpen,
     setIsOpen,
+    drivers,
     updateDriver,
 }: {
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
+    drivers: IDriver[];
     updateDriver: (updatedDriver: IDriver, image: File) => void;
 }) => {
     const [id, setId] = useState<number>(0);
-    const [name, setName] = useState('');
+    const [selectedDriver, setSelectedDriver] = useState<IDriver>();
+    const [name, setName] = useState<string>('');
     const [age, setAge] = useState<number>(0);
-    const [nationality, setNationality] = useState('');
+    const [nationality, setNationality] = useState<string>('');
+    const [imageName, setImageName] = useState<string>('');
     const [image, setImage] = useState<File | null>(null);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -39,19 +42,30 @@ const EditDriverModal = ({
         }
     };
 
+    const findSelectedDriver = (id: number) => {
+        const selectedDriver = drivers.find((driver) => driver.id === id);
+        setSelectedDriver(selectedDriver);
+
+        if(selectedDriver !== undefined && selectedDriver.id && selectedDriver.image) {
+            setId(selectedDriver.id);
+            setName(selectedDriver.name);
+            setAge(selectedDriver.age);
+            setNationality(selectedDriver.nationality)
+            setImageName(selectedDriver.image);
+        }
+    };
+
     const saveDriver = () => {
         const updatedDriver = {
             id: id,
             name: name,
             age: age,
             nationality: nationality,
-            image: image?.name,
+            image: image?.name ?? selectedDriver?.image,
         };
-        updateDriver(updatedDriver, image as File);
+        updateDriver(updatedDriver, image as File ?? null);
         setIsOpen(!isOpen);
     };
-
-    ReactModal.setAppElement('#root');
 
     return (
         <Modal show={isOpen} onHide={() => setIsOpen(!isOpen)}>
@@ -60,16 +74,32 @@ const EditDriverModal = ({
             </Modal.Header>
             <Modal.Body>
                 <form>
-                    <label className='form-label'>ID</label>
-                    <input name='id' onChange={handleChange} type='number' className='form-control' />
-                    <label className='form-label'>Name</label>
-                    <input name='name' onChange={handleChange} type='text' className='form-control' />
-                    <label className='form-label'>Age</label>
-                    <input name='age' onChange={handleChange} type='number' className='form-control' />
-                    <label className='form-label'>Nationality</label>
-                    <input name='nationality' onChange={handleChange} type='text' className='form-control' />
-                    <label className='form-label'>Image</label>
-                    <input name='image' onChange={handleChange} type='file' className='form-control' />
+                    <Form.Select aria-label='Select team' onChange={(e) => findSelectedDriver(parseInt(e.target.value))}>
+                        <option key='blankChoice' hidden value='blank'>
+                            -- Select driver to edit --
+                        </option>
+                        {drivers.map((driver) => (
+                            <option key={driver.id} value={driver.id}>
+                                {driver.name}
+                            </option>
+                        ))}
+                    </Form.Select>
+                    {selectedDriver && (
+                        <>
+                            <label className='form-label'>ID</label>
+                            <input name='id' value={id} onChange={handleChange} type='number' className='form-control' />
+                            <label className='form-label'>Name</label>
+                            <input name='name' value={name} onChange={handleChange} type='text' className='form-control' />
+                            <label className='form-label'>Age</label>
+                            <input name='age' value={age} onChange={handleChange} type='number' className='form-control' />
+                            <label className='form-label'>Nationality</label>
+                            <input name='nationality' value={nationality} onChange={handleChange} type='text' className='form-control' />
+                            <label className='form-label'>Current image</label>
+                            <input name='image-name' value={imageName} onChange={handleChange} type='text' className='form-control' />
+                            <label className='form-label'>New image</label>
+                            <input name='image-upload' onChange={handleChange} type='file' className='form-control' />
+                        </>
+                    )}
                 </form>
             </Modal.Body>
             <Modal.Footer>

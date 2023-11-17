@@ -1,25 +1,20 @@
-import { ChangeEvent, useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { useState } from 'react';
+import { Button, Form, Modal } from 'react-bootstrap';
 import ReactModal from 'react-modal';
+import IDriver from '../../../interfaces/IDriver';
 
 const DeleteDriverModal = ({
     isOpen,
     setIsOpen,
+    drivers,
     removeDriver,
 }: {
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
+    drivers: IDriver[];
     removeDriver: (id: number) => void;
 }) => {
     const [id, setId] = useState<number>(0);
-
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        switch (e.currentTarget.name) {
-            case 'id':
-                setId(parseInt(e.currentTarget.value));
-                break;
-        }
-    };
 
     const deleteDriver = () => {
         removeDriver(id);
@@ -35,8 +30,12 @@ const DeleteDriverModal = ({
             </Modal.Header>
             <Modal.Body>
                 <form>
-                    <label className='form-label'>Driver ID</label>
-                    <input name='id' onChange={handleChange} type='number' className='form-control' />
+                <Form.Select aria-label='Select team' onChange={(e) => setId(parseInt(e.target.value))}>
+                    <option key='blankChoice' hidden value="blank">-- Select driver to delete --</option>
+                        {drivers.map((driver) => (
+                            <option key={driver.id} value={driver.id}>{driver.name}</option>
+                            ))}
+                    </Form.Select>
                 </form>
             </Modal.Body>
             <Modal.Footer>

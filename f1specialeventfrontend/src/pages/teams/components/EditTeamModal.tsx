@@ -1,21 +1,24 @@
 import { ChangeEvent, useState } from 'react';
-import ReactModal from 'react-modal';
 import ITeam from '../../../interfaces/ITeam';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Form } from 'react-bootstrap';
 
 const EditTeamModal = ({
     isOpen,
     setIsOpen,
+    teams,
     updateTeam,
 }: {
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
+    teams: ITeam[];
     updateTeam: (updatedTeam: ITeam, image: File) => void;
 }) => {
     const [id, setId] = useState<number>(0);
+    const [selectedTeam, setSelectedTeam] = useState<ITeam>();
     const [manufacturer, setManufacturer] = useState('');
     const [driver1, setDriver1] = useState('');
     const [driver2, setDriver2] = useState('');
+    const [imageName, setImageName] = useState<string>('');
     const [image, setImage] = useState<File | null>(null);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -39,19 +42,30 @@ const EditTeamModal = ({
         }
     };
 
+    const findSelectedTeam = (id: number) => {
+        const selectedTeam = teams.find((team) => team.id === id);
+        setSelectedTeam(selectedTeam);
+
+        if(selectedTeam !== undefined && selectedTeam.id && selectedTeam.image) {
+            setId(selectedTeam.id);
+            setManufacturer(selectedTeam.manufacturer);
+            setDriver1(selectedTeam.driver1);
+            setDriver2(selectedTeam.driver2)
+            setImageName(selectedTeam.image);
+        }
+    };
+
     const saveTeam = () => {
         const updatedTeam = {
             id: id,
             manufacturer: manufacturer,
             driver1: driver1,
             driver2: driver2,
-            image: image?.name,
+            image: image?.name ?? selectedTeam?.image,
         };
-        updateTeam(updatedTeam, image as File);
+        updateTeam(updatedTeam, image as File ?? null);
         setIsOpen(!isOpen);
     };
-
-    ReactModal.setAppElement('#root');
 
     return (
         <Modal show={isOpen} onHide={() => setIsOpen(!isOpen)}>
@@ -60,16 +74,30 @@ const EditTeamModal = ({
             </Modal.Header>
             <Modal.Body>
                 <form>
-                    <label className='form-label'>ID</label>
-                    <input name='id' onChange={handleChange} type='number' className='form-control' />
+                    <Form.Select aria-label='Select team' onChange={(e) => findSelectedTeam(parseInt(e.target.value))}>
+                        <option key='blankChoice' hidden value='blank'>
+                            -- Select driver to edit --
+                        </option>
+                        {teams.map((team) => (
+                            <option key={team.id} value={team.id}>
+                                {team.manufacturer}
+                            </option>
+                        ))}
+                    </Form.Select>
+                    {selectedTeam && (
+                        <>
                     <label className='form-label'>Manufacturer</label>
-                    <input name='manufacturer' onChange={handleChange} type='text' className='form-control' />
+                    <input name='manufacturer' value={manufacturer} onChange={handleChange} type='text' className='form-control' />
                     <label className='form-label'>First driver</label>
-                    <input name='driver-one' onChange={handleChange} type='text' className='form-control' />
+                    <input name='driver-one' value={driver1} onChange={handleChange} type='text' className='form-control' />
                     <label className='form-label'>Second driver</label>
-                    <input name='driver-two' onChange={handleChange} type='text' className='form-control' />
+                    <input name='driver-two' value={driver2} onChange={handleChange} type='text' className='form-control' />
+                    <label className='form-label'>Current image</label>
+                    <input name='image-name' value={imageName} onChange={handleChange} type='text' className='form-control' />
                     <label className='form-label'>Image</label>
                     <input name='image' onChange={handleChange} type='file' className='form-control' />
+                    </>
+                    )}
                 </form>
             </Modal.Body>
             <Modal.Footer>

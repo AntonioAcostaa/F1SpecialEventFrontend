@@ -65,6 +65,7 @@ const TeamsPage = () => {
                 <DeleteTeamModal
                     isOpen={deleteTeamModalIsOpen}
                     setIsOpen={setDeleteTeamModalIsOpen}
+                    teams={teams}
                     removeTeam={removeTeam}
                 />
             )}
@@ -72,6 +73,7 @@ const TeamsPage = () => {
                 <EditTeamModal
                     isOpen={updateTeamModalIsOpen}
                     setIsOpen={setUpdateTeamModalIsOpen}
+                    teams={teams}
                     updateTeam={updateTeam}
                 />
             )}

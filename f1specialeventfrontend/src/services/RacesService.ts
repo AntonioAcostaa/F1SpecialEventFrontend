@@ -1,11 +1,11 @@
-import axios from "axios";
-import IRace from "../interfaces/IRace";
+import axios from 'axios';
+import IRace from '../interfaces/IRace';
 
 const RacesService =
     //Service har ansvaret for å kommunisere med APIet, og returnerer dataen som blir hentet fra APIet.
     (() => {
-        const racesEndpoint = "http://localhost:5014/api/Races"; //URLen til APIet - Finne ut av hvordan vi kan rette det med at man får forksjellige porter på forskjellige maskiner.
-        const imageEndpoint = "http://localhost:5014/api/imageUpload";
+        const racesEndpoint = 'http://localhost:5014/api/Races'; //URLen til APIet - Finne ut av hvordan vi kan rette det med at man får forksjellige porter på forskjellige maskiner.
+        const imageEndpoint = 'http://localhost:5014/api/imageUpload';
 
         const getAllRaces = async () => {
             try {
@@ -35,9 +35,7 @@ const RacesService =
 
         const getRaceByName = async (name: string) => {
             try {
-                const response = await axios.get(
-                    `${racesEndpoint}/name/${name}`
-                );
+                const response = await axios.get(`${racesEndpoint}/name/${name}`);
                 if (response.status === 200) {
                     return response.data;
                 } else {
@@ -52,49 +50,49 @@ const RacesService =
             try {
                 const response = await axios.post(racesEndpoint, newRace);
                 const formData = new FormData();
-                formData.append("formFile", image);
-    
+                formData.append('formFile', image);
+
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 const uploadResult = await axios({
                     url: imageEndpoint,
-                    method: "POST",
+                    method: 'POST',
                     data: formData,
-                    headers: { "Content-Type": "multipart/form-data" },
+                    headers: { 'Content-Type': 'multipart/form-data' },
                 });
-                formData.delete("formFile");
-    
+                formData.delete('formFile');
+
                 if (response.status === 201 && uploadResult.status === 200) {
                     return response.data;
                 } else {
-                    return "Failed to post race";
+                    return 'Failed to post race';
                 }
             } catch (err) {
                 console.log(err);
             }
         };
-        
+
         const putRace = async (updatedRace: IRace, image: File) => {
             try {
-                const response = await axios.put(
-                    `${racesEndpoint}/${updatedRace.id}`,
-                    updatedRace
-                );
-                const formData = new FormData();
-                formData.append("formFile", image);
-    
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                const uploadResult = await axios({
-                    url: imageEndpoint,
-                    method: "POST",
-                    data: formData,
-                    headers: { "Content-Type": "multipart/form-data" },
-                });
-                formData.delete("formFile");
-    
-                if (response.status === 201 && uploadResult.status === 200) {
+                const response = await axios.put(`${racesEndpoint}/${updatedRace.id}`, updatedRace);
+
+                if (image) {
+                    const formData = new FormData();
+                    formData.append('formFile', image);
+
+                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                    const uploadResult = await axios({
+                        url: imageEndpoint,
+                        method: 'POST',
+                        data: formData,
+                        headers: { 'Content-Type': 'multipart/form-data' },
+                    });
+                    formData.delete('formFile');
+                }
+
+                if (response.status === 201) {
                     return response.data;
                 } else {
-                    return "Failed to edit race";
+                    return 'Failed to edit race';
                 }
             } catch (err) {
                 console.log(err);

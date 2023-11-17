@@ -1,25 +1,20 @@
-import { ChangeEvent, useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { useState } from 'react';
+import { Modal, Button, Form } from 'react-bootstrap';
 import ReactModal from 'react-modal';
+import ITeam from '../../../interfaces/ITeam';
 
 const DeleteTeamModal = ({
     isOpen,
     setIsOpen,
+    teams,
     removeTeam,
 }: {
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
+    teams: ITeam[];
     removeTeam: (id: number) => void;
 }) => {
     const [id, setId] = useState<number>(0);
-
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        switch (e.currentTarget.name) {
-            case 'id':
-                setId(parseInt(e.currentTarget.value));
-                break;
-        }
-    };
 
     const deleteTeam = () => {
         removeTeam(id);
@@ -35,8 +30,12 @@ const DeleteTeamModal = ({
             </Modal.Header>
             <Modal.Body>
                 <form>
-                    <label className='form-label'>Team ID</label>
-                    <input name='id' onChange={handleChange} type='number' className='form-control' />
+                    <Form.Select aria-label='Select team' onChange={(e) => setId(parseInt(e.target.value))}>
+                    <option key='blankChoice' hidden value="blank">-- Select team to delete --</option>
+                        {teams.map((team) => (
+                            <option key={team.id} value={team.id}>{team.manufacturer}</option>
+                            ))}
+                    </Form.Select>
                 </form>
             </Modal.Body>
             <Modal.Footer>

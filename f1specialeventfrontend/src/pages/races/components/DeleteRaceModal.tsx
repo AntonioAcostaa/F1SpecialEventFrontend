@@ -1,25 +1,20 @@
-import { ChangeEvent, useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { useState } from 'react';
+import { Modal, Button, Form } from 'react-bootstrap';
 import ReactModal from 'react-modal';
+import IRace from '../../../interfaces/IRace';
 
 const DeleteRaceModal = ({
     isOpen,
     setIsOpen,
+    races,
     removeRace,
 }: {
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
+    races: IRace[];
     removeRace: (id: number) => void;
 }) => {
     const [id, setId] = useState<number>(0);
-
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        switch (e.currentTarget.name) {
-            case 'id':
-                setId(parseInt(e.currentTarget.value));
-                break;
-        }
-    };
 
     const deleteRace = () => {
         removeRace(id);
@@ -35,8 +30,12 @@ const DeleteRaceModal = ({
             </Modal.Header>
             <Modal.Body>
                 <form>
-                    <label className='form-label'>Race ID</label>
-                    <input name='id' onChange={handleChange} type='number' className='form-control' />
+                <Form.Select aria-label='Select team' onChange={(e) => setId(parseInt(e.target.value))}>
+                    <option key='blankChoice' hidden value="blank">-- Select race to delete --</option>
+                        {races.map((race) => (
+                            <option key={race.id} value={race.id}>{`${race.grandPrix}`}</option>
+                            ))}
+                    </Form.Select>
                 </form>
             </Modal.Body>
             <Modal.Footer>

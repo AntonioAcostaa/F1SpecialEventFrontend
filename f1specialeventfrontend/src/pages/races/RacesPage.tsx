@@ -72,6 +72,7 @@ const RacesPage = () => {
                 <DeleteRaceModal
                     isOpen={deleteRaceModalIsOpen}
                     setIsOpen={setDeleteRaceModalIsOpen}
+                    races={races}
                     removeRace={removeRace}
                 />
             )}
@@ -79,6 +80,7 @@ const RacesPage = () => {
                 <EditRaceModal
                     isOpen={updateRaceModalIsOpen}
                     setIsOpen={setUpdateRaceModalIsOpen}
+                    races={races}
                     updateRace={updateRace}
                 />
             )}

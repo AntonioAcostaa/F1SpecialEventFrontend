@@ -44,8 +44,8 @@ const DriversPage = () => {
                 </div>
             </div>
             {addDriverModalIsOpen && <AddDriverModal isOpen={addDriverModalIsOpen} setIsOpen={setAddDriverModalIsOpen} addDriver={addDriver}/>}
-            {deleteDriverModalIsOpen && <DeleteDriverModal isOpen={deleteDriverModalIsOpen} setIsOpen={setDeleteDriverModalIsOpen} removeDriver={removeDriver}/>}
-            {updateDriverModalIsOpen && <EditDriverModal isOpen={updateDriverModalIsOpen} setIsOpen={setUpdateDriverModalIsOpen} updateDriver={updateDriver}/>}
+            {deleteDriverModalIsOpen && <DeleteDriverModal isOpen={deleteDriverModalIsOpen} setIsOpen={setDeleteDriverModalIsOpen} drivers={drivers} removeDriver={removeDriver}/>}
+            {updateDriverModalIsOpen && <EditDriverModal isOpen={updateDriverModalIsOpen} setIsOpen={setUpdateDriverModalIsOpen} drivers={drivers} updateDriver={updateDriver}/>}
         </>
     );
 };
