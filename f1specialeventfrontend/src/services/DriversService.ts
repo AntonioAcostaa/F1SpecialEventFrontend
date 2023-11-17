@@ -31,11 +31,9 @@ const DriversService =
 
         const getDriverByName = async (name: string) => {
             try {
-                const response = await axios.get(`${driversEndpoint}/name/${name}`);
+                const response = await axios.get(`${driversEndpoint}/GetDriverByName/${name}`);
                 if (response.status === 200) {
                     return response.data;
-                } else {
-                    return [];
                 }
             } catch (err) {
                 console.log(err);

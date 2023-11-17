@@ -11,11 +11,16 @@ interface Props {
 
 export const DriverContextProvider: FC<Props> = ({ children }) => {
     const [drivers, setDrivers] = useState<IDriver[]>([]);
-    
+
     const getAllDrivers = async () => {
         const drivers = await DriversService.getAllDrivers()
         setDrivers(drivers);
     };
+
+    const getDriverByName = async (name: string) => {
+        const driver = await DriversService.getDriverByName(name);
+        setDrivers([driver])
+    }
 
     const addDriver = async (newDriver: IDriver, image: File) => {
         await DriversService.postDriver(newDriver, image)
@@ -33,7 +38,7 @@ export const DriverContextProvider: FC<Props> = ({ children }) => {
     }
 
     return (
-        <DriverContext.Provider value={{ drivers, getAllDrivers, addDriver, removeDriver, updateDriver }}>
+        <DriverContext.Provider value={{ drivers, getAllDrivers, getDriverByName, addDriver, removeDriver, updateDriver }}>
             {children}
         </DriverContext.Provider>
     );
