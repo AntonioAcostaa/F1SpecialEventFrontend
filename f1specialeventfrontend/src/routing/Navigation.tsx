@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import { ActivePageContext } from "../contexts/ActivePageContext";
 import IActivePageContext from "../interfaces/IActivePageContext";
 import { ActivePage } from "../interfaces/IActivePageContext";
+import "../assets/fonts/fonts.css";
 
 //Navigasjons-komponenten som skal benyttes på alle sider for å navigere mellom dem
 const Navigation = () => {
-
-    const { activePage, setActivePage } = useContext(ActivePageContext) as IActivePageContext;
+    const { activePage, setActivePage } = useContext(
+        ActivePageContext
+    ) as IActivePageContext;
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -41,7 +43,11 @@ const Navigation = () => {
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
                             <Link
-                                className={activePage === ActivePage.home ? "nav-link border-danger border-top border-end border-2 rounded m-2" : "nav-link border-secondary border-top border-end border-2 rounded m-2"}
+                                className={
+                                    activePage === ActivePage.home
+                                        ? "navtext nav-link border-danger border-top border-end border-2 rounded m-2"
+                                        : "navtext nav-link border-secondary border-top border-end border-2 rounded m-2"
+                                }
                                 to="/"
                                 onClick={() => setActivePage(ActivePage.home)}
                             >
@@ -50,16 +56,26 @@ const Navigation = () => {
                         </li>
                         <li className="nav-item">
                             <Link
-                                className={activePage === ActivePage.drivers ? "nav-link border-danger border-top border-end border-2 rounded m-2" : "nav-link border-secondary border-top border-end border-2 rounded m-2"}
+                                className={
+                                    activePage === ActivePage.drivers
+                                        ? "navtext nav-link border-danger border-top border-end border-2 rounded m-2"
+                                        : "navtext nav-link border-secondary border-top border-end border-2 rounded m-2"
+                                }
                                 to="/drivers"
-                                onClick={() => setActivePage(ActivePage.drivers)}
+                                onClick={() =>
+                                    setActivePage(ActivePage.drivers)
+                                }
                             >
                                 Drivers
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link
-                                className={activePage === ActivePage.teams ? "nav-link border-danger border-top border-end border-2 rounded m-2" : "nav-link border-secondary border-top border-end border-2 rounded m-2"}
+                                className={
+                                    activePage === ActivePage.teams
+                                        ? "navtext nav-link border-danger border-top border-end border-2 rounded m-2"
+                                        : "navtext nav-link border-secondary border-top border-end border-2 rounded m-2"
+                                }
                                 to="/teams"
                                 onClick={() => setActivePage(ActivePage.teams)}
                             >
@@ -68,7 +84,11 @@ const Navigation = () => {
                         </li>
                         <li className="nav-item">
                             <Link
-                                className={activePage === ActivePage.races ? "nav-link border-danger border-top border-end border-2 rounded m-2" : "nav-link border-secondary border-top border-end border-2 rounded m-2"}
+                                className={
+                                    activePage === ActivePage.races
+                                        ? "navtext nav-link border-danger border-top border-end border-2 rounded m-2"
+                                        : "navtext nav-link border-secondary border-top border-end border-2 rounded m-2"
+                                }
                                 to="/races"
                                 onClick={() => setActivePage(ActivePage.races)}
                             >

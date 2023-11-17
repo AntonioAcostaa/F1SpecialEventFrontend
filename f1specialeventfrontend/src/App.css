@@ -1,3 +1,4 @@
+/*
 #root {
     max-width: 1280px;
     margin: 0 auto;
@@ -39,4 +40,28 @@
 
 .read-the-docs {
     color: #888;
+}
+*/
+@font-face {
+    font-family: "f1Regular";
+    src: local("Formula1-Regular"),
+        url("./assets/fonts/Formula1-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "f1Bold";
+    src: local("Formula1-Bold"),
+        url("./assets/fonts/Formula1-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "f1Black";
+    src: local("Formula1-Black"),
+        url("./assets/fonts/Formula1-Black.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "f1Wide";
+    src: local("Formula1-Wide"),
+        url("./assets/fonts/Formula1-Wide.ttf") format("truetype");
 }

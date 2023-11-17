@@ -9,6 +9,7 @@ import { ActivePageContext } from "../../contexts/ActivePageContext";
 import IActivePageContext, {
     ActivePage,
 } from "../../interfaces/IActivePageContext";
+import "../../assets/fonts/fonts.css";
 
 const TeamsPage = () => {
     const [addTeamModalIsOpen, setAddTeamModalIsOpen] = useState(false);
@@ -48,7 +49,7 @@ const TeamsPage = () => {
             >
                 Update team
             </button>
-            <div className="col-12 mx-auto text-center rounded p-5 border-top border-5 border-danger border-end m-5">
+            <div className="header col-12 mx-auto text-center rounded p-5 border-top border-5 border-danger border-end m-5">
                 <h1>F1 Teams 2023</h1>
             </div>
             <div className="container">

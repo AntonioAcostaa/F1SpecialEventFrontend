@@ -10,6 +10,7 @@ import IActivePageContext, {
 import AddRaceModal from "./components/AddRaceModal";
 import DeleteRaceModal from "./components/DeleteRaceModal";
 import EditRaceModal from "./components/EditRaceModal";
+import "../../assets/fonts/fonts.css";
 
 const RacesPage = () => {
     const [addRaceModalIsOpen, setAddRaceModalIsOpen] = useState(false);
