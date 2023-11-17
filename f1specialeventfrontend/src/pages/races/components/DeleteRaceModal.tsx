@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from 'react';
+import { Modal, Button } from 'react-bootstrap';
 import ReactModal from 'react-modal';
 
 const DeleteRaceModal = ({
@@ -20,7 +21,7 @@ const DeleteRaceModal = ({
         }
     };
 
-    const deleteDriver = () => {
+    const deleteRace = () => {
         removeRace(id);
         setIsOpen(!isOpen);
     };
@@ -28,21 +29,25 @@ const DeleteRaceModal = ({
     ReactModal.setAppElement('#root');
 
     return (
-        <ReactModal isOpen={isOpen} onRequestClose={() => setIsOpen(!isOpen)}>
-            <form>
-                <h3>Delete race by ID</h3>
-                <label className='form-label'>Race ID</label>
-                <input name='id' onChange={handleChange} type='number' className='form-control' />
-            </form>
-            <div className='d-flex justify-content-between mt-2'>
-            <button onClick={deleteDriver} type='button' className='btn btn-danger'>
-                Delete race (Non reversable)
-            </button>
-            <button className='btn btn-danger' onClick={() => setIsOpen(!isOpen)}>
-                Close
-            </button>
-            </div>
-        </ReactModal>
+        <Modal show={isOpen} onHide={() => setIsOpen(!isOpen)}>
+            <Modal.Header closeButton>
+                <Modal.Title>Delete race by ID</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <form>
+                    <label className='form-label'>Race ID</label>
+                    <input name='id' onChange={handleChange} type='number' className='form-control' />
+                </form>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant='secondary' onClick={() => setIsOpen(!isOpen)}>
+                    Close
+                </Button>
+                <Button variant='danger' onClick={deleteRace}>
+                    Delete race
+                </Button>
+            </Modal.Footer>
+        </Modal>
     );
 };
 
