@@ -13,29 +13,24 @@ interface Props {
 export const RaceContextProvider: FC<Props> = ({ children }) => {
     const [races, setRaces] = useState<IRace[]>([]);
     
-    const getAllRaces = () => {
-        RacesService.getAllRaces()
-        .then((response) => {
-            setRaces(response);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+    const getAllRaces = async () => {
+        const races = await RacesService.getAllRaces()
+        setRaces(races);
     };
 
-    const addRace = (newRace: IRace, image: File) => {
-        RacesService.postRace(newRace, image)
-        getAllRaces;
+    const addRace = async (newRace: IRace, image: File) => {
+        await RacesService.postRace(newRace, image)
+        await getAllRaces();
     }
 
-    const removeRace = (id: number) => {
-        RacesService.deleteRace(id);
-        getAllRaces;
+    const removeRace = async (id: number) => {
+        await RacesService.deleteRace(id);
+        await getAllRaces();
     }
 
-    const updateRace = (updatedRace: IRace, image: File) => {
-        RacesService.putRace(updatedRace, image)
-        getAllRaces;
+    const updateRace = async (updatedRace: IRace, image: File) => {
+        await RacesService.putRace(updatedRace, image)
+        await getAllRaces();
     }
 
     return (

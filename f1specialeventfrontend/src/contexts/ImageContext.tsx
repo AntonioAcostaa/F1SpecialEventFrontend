@@ -12,14 +12,9 @@ interface Props {
 export const ImageContextProvider: FC<Props> = ({ children }) => {
     const [images, setImages] = useState<string[]>([]);
     
-    const getAllImages = () => {
-        ImageService.getAllImages()
-        .then((response) => {
-            setImages(response);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+    const getAllImages = async () => {
+        const images = await ImageService.getAllImages()
+        setImages(images);
     };
 
     return (

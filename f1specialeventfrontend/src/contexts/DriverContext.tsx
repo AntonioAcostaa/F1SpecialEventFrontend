@@ -12,29 +12,24 @@ interface Props {
 export const DriverContextProvider: FC<Props> = ({ children }) => {
     const [drivers, setDrivers] = useState<IDriver[]>([]);
     
-    const getAllDrivers = () => {
-        DriversService.getAllDrivers()
-        .then((response) => {
-            setDrivers(response);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+    const getAllDrivers = async () => {
+        const drivers = await DriversService.getAllDrivers()
+        setDrivers(drivers);
     };
 
-    const addDriver = (newDriver: IDriver, image: File) => {
-        DriversService.postDriver(newDriver, image)
-        getAllDrivers();
+    const addDriver = async (newDriver: IDriver, image: File) => {
+        await DriversService.postDriver(newDriver, image)
+        await getAllDrivers();
     }
 
-    const removeDriver = (id: number) => {
-        DriversService.deleteDriver(id);
-        getAllDrivers;
+    const removeDriver = async (id: number) => {
+        await DriversService.deleteDriver(id);
+        await getAllDrivers();
     }
 
-    const updateDriver = (updatedDriver: IDriver, image: File) => {
-        DriversService.putDriver(updatedDriver, image)
-        getAllDrivers;
+    const updateDriver = async (updatedDriver: IDriver, image: File) => {
+        await DriversService.putDriver(updatedDriver, image)
+        await getAllDrivers();
     }
 
     return (
