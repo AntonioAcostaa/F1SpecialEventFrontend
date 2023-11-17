@@ -32,7 +32,7 @@ const DriversPage = () => {
 
     return (
         <>
-            <div className="container p-5">
+            <div className="container p-3">
                 <button
                     className="btn btn-danger mx-1"
                     onClick={() =>
@@ -57,7 +57,7 @@ const DriversPage = () => {
                 >
                     Update driver
                 </button>
-                <div className="col-12 mx-auto text-center rounded p-5 border-top border-5 border-danger border-end m-5">
+                <div className="col-12 mx-auto text-center rounded p-4 border-top border-5 border-danger border-end mb-1 mt-3">
                     <h1>F1 Drivers 2023</h1>
                 </div>
                 <div className="container">
