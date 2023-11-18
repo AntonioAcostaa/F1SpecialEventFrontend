@@ -1,5 +1,6 @@
 import ITeam from "../../../interfaces/ITeam";
 import styles from "../styles/teamList.module.css";
+import "../../../assets/fonts/fonts.css";
 
 const TeamCard = ({ team }: { team: ITeam }) => {
     return (
@@ -13,7 +14,7 @@ const TeamCard = ({ team }: { team: ITeam }) => {
                 alt={`Portret image. PNG. ${team.manufacturer}`}
             />
             <div className="card-body">
-                <h5 className="card-title">{team.manufacturer}</h5>
+                <h5 className="cardHeader card-title">{team.manufacturer}</h5>
                 <p className="card-text">
                     First driver: {team.driver1}
                     <br></br>

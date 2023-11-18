@@ -23,14 +23,18 @@ const HomePage = () => {
                 <div
                     className="mask rounded"
                     style={{
-                        backgroundColor: "rgba(0, 0, 0, 0.6)",
-                        width: "500px",
+                        backgroundColor: "rgba(0, 0, 0, 0.3)",
+                        width: "800px",
                     }}
                 >
                     <div className="d-flex justify-content-center align-items-center h-100">
-                        <div className="text-danger">
-                            <h1 className="mb-3">Welcome to Formula 1</h1>
-                            <h4 className="mb-3">Special event manager</h4>
+                        <div className="text-light">
+                            <h1 className="mb-3 mainPageHeader">
+                                Welcome to Formula 1
+                            </h1>
+                            <h4 className="mb-3 mainPageHeader">
+                                Special event manager
+                            </h4>
                         </div>
                     </div>
                 </div>

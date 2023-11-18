@@ -3,6 +3,7 @@ import React from "react";
 import IRace from "../../../interfaces/IRace";
 import format from "date-fns/format";
 import styles from "../styles/raceList.module.css";
+import "../../../assets/fonts/fonts.css";
 
 interface RaceListProps {
     races: IRace[];
@@ -25,7 +26,7 @@ const RaceList: React.FC<RaceListProps> = ({ races }) => {
                         </div>
                         <div className="col-md-8">
                             <div className="card-body">
-                                <h3 className="card-title p-3">
+                                <h3 className="cardHeader card-title p-3">
                                     {race.grandPrix}
                                 </h3>
                                 <br />

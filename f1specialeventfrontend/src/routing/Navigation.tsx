@@ -50,6 +50,7 @@ const Navigation = () => {
                                 }
                                 to="/"
                                 onClick={() => setActivePage(ActivePage.home)}
+                                style={{ fontSize: 14 }}
                             >
                                 Home
                             </Link>
@@ -65,6 +66,7 @@ const Navigation = () => {
                                 onClick={() =>
                                     setActivePage(ActivePage.drivers)
                                 }
+                                style={{ fontSize: 14 }}
                             >
                                 Drivers
                             </Link>
@@ -78,6 +80,7 @@ const Navigation = () => {
                                 }
                                 to="/teams"
                                 onClick={() => setActivePage(ActivePage.teams)}
+                                style={{ fontSize: 14 }}
                             >
                                 Teams
                             </Link>
@@ -91,6 +94,7 @@ const Navigation = () => {
                                 }
                                 to="/races"
                                 onClick={() => setActivePage(ActivePage.races)}
+                                style={{ fontSize: 14 }}
                             >
                                 Races
                             </Link>
