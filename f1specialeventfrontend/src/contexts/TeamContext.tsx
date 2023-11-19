@@ -17,6 +17,11 @@ export const TeamContextProvider: FC<Props> = ({ children }) => {
         setTeams(teams);
     };
 
+    const getTeamsByName = async (name: string) => {
+        const teams = await TeamsService.getTeamsByName(name);
+        setTeams(teams)
+    }
+
     const addTeam = async (newTeam: ITeam, image: File) => {
         await TeamsService.postTeam(newTeam, image)
         await getAllTeams();
@@ -33,7 +38,7 @@ export const TeamContextProvider: FC<Props> = ({ children }) => {
     }
 
     return (
-        <TeamContext.Provider value={{ teams, getAllTeams, addTeam, removeTeam, updateTeam }}>
+        <TeamContext.Provider value={{ teams, getAllTeams, getTeamsByName, addTeam, removeTeam, updateTeam }}>
             {children}
         </TeamContext.Provider>
     );

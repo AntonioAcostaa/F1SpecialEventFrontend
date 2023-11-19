@@ -34,9 +34,9 @@ const TeamsService = (  //Service har ansvaret for å kommunisere med APIet, og 
             }
         }
 
-        const getTeamByName = async (name: string) => {
+        const getTeamsByName = async (name: string) => {
             try {
-                const response = await axios.get(`${teamsEndpoint}/name/${name}`);
+                const response = await axios.get(`${teamsEndpoint}/GetTeamsByName/${name}`);
                 if (response.status === 200) {
                     return response.data;
                 } else {
@@ -113,7 +113,7 @@ const TeamsService = (  //Service har ansvaret for å kommunisere med APIet, og 
         return {
             getAllTeams,
             getTeamById,
-            getTeamByName,
+            getTeamsByName,
             postTeam,
             putTeam,
             deleteTeam

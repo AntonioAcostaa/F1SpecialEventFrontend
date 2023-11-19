@@ -18,6 +18,16 @@ export const RaceContextProvider: FC<Props> = ({ children }) => {
         setRaces(races);
     };
 
+    const getRacesByGrandPrix = async (grandPrix: string) => {
+        const races = await RacesService.getRaceByGrandPrix(grandPrix);
+        setRaces(races);
+    }
+
+    const getRacesByWinner = async (winner: string) => {
+        const races = await RacesService.getRaceByWinner(winner);
+        setRaces(races);
+    }
+
     const addRace = async (newRace: IRace, image: File) => {
         await RacesService.postRace(newRace, image)
         await getAllRaces();
@@ -34,7 +44,7 @@ export const RaceContextProvider: FC<Props> = ({ children }) => {
     }
 
     return (
-        <RaceContext.Provider value={{ races, getAllRaces, addRace, removeRace, updateRace }}>
+        <RaceContext.Provider value={{ races, getAllRaces, getRacesByGrandPrix, getRacesByWinner, addRace, removeRace, updateRace }}>
             {children}
         </RaceContext.Provider>
     );

@@ -15,6 +15,7 @@ const RaceList: React.FC<RaceListProps> = ({ races }) => {
             {races.map((race) => (
                 <div
                     className={`${styles.cardContainer} border-3 rounded shadow border-bottom border-danger mx-auto text-center p-3  m-5`}
+                    key={race.id}
                 >
                     <div className="row g-0">
                         <div className="col-md-4">

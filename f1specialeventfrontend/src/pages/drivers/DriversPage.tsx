@@ -29,17 +29,24 @@ const DriversPage = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const [id, setId] = useState(0);
     const [selectedTeamId, setSelectedTeamId] = useState(0);
-    const [driverName, setDriverName] = useState('');
+    const [driverName, setDriverName] = useState<string>('');
+    const [selectedTeam, setSelectedTeam] = useState('blank');
 
     const handleSearchByName = (e: ChangeEvent<HTMLInputElement>) => {
-        setDriverName(e.currentTarget.value);
+        setDriverName(e.target.value);
+
+        if (e.currentTarget.value === '') {
+            getAllDrivers();
+        } else {
+        getDriverByName(e.currentTarget.value);
+        }
     };
 
-    const search = () => {
-        getDriverByName(driverName);
-    };
+    const handleFilterbyTeam = (e: ChangeEvent<HTMLSelectElement>) => {
+        setSelectedTeamId(parseInt(e.target.value));
+        filteredDriversByTeam();
+    }
 
     const filteredDriversByTeam = () => {
         const selectedTeam = teams.find((team) => team.id === selectedTeamId);
@@ -48,11 +55,16 @@ const DriversPage = () => {
         if (selectedTeam) {
             filteredDriversByTeam = drivers.filter((driver) => driver.name === selectedTeam.driver1 || driver.name === selectedTeam.driver2);
         }
-
-        return filteredDriversByTeam;
+        return filteredDriversByTeam
     };
 
-    console.log(teams);
+    const clearFilter = () => {
+        setSelectedTeamId(0);
+        setDriverName('');
+        getAllDrivers();
+        setSelectedTeam('blank');
+    }
+
     return (
         <>
             <div className=' container p-3'>
@@ -66,13 +78,13 @@ const DriversPage = () => {
                     <button className='btn btn-danger mx-1' onClick={() => setUpdateDriverModalIsOpen(!updateDriverModalIsOpen)}>
                         Update driver
                     </button>
-                    <Accordion className={styles.accordion}>
+                    <Accordion className={styles.accordion} onClick={getAllTeams}>
                         <Accordion.Item eventKey='0' onClick={() => getAllTeams}>
                             <Accordion.Header>Filters</Accordion.Header>
-                            <Accordion.Body>
-                                <label className='form-label'>Search by name</label>
-                                <input name='search' onChange={handleSearchByName} type='text' className='form-control' />
-                                <Form.Select aria-label='Select team' onChange={(e) => setSelectedTeamId(parseInt(e.target.value))}>
+                            <Accordion.Body className={styles.filterBody}>
+                                <label className='form-label'>Search by name or select team</label>
+                                <input name='search' placeholder='Search name' value={driverName}  onChange={(e) => handleSearchByName(e)} type='text' className='form-control' />
+                                <Form.Select aria-label='Select team' value={selectedTeam} onChange={(e) => { handleFilterbyTeam(e); setSelectedTeam(e.target.value); }} disabled={driverName !== ''}>
                                     <option key='blankChoice' hidden value='blank'>
                                         -- Select team to view --
                                     </option>
@@ -83,10 +95,7 @@ const DriversPage = () => {
                                     ))}
                                 </Form.Select>
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <button className='btn btn-danger mt-2' onClick={search}>
-                                        Search
-                                    </button>
-                                    <button className='btn btn-danger mt-2' onClick={search}>
+                                    <button className='btn btn-danger mt-2' onClick={() => clearFilter()}>
                                         Clear filter
                                     </button>
                                 </div>

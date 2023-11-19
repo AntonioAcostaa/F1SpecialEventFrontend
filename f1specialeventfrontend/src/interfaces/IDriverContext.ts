@@ -2,6 +2,7 @@ import IDriver from "./IDriver";
 
 interface IDriverContext {
     drivers: IDriver[],
+    setDrivers: (drivers: IDriver[]) => void;
     getAllDrivers: () => void;
     getDriverByName: (name: string) => void;
     addDriver: (newDriver: IDriver, image: File) => void;

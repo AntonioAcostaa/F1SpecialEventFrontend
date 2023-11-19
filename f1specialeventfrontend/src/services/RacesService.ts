@@ -33,9 +33,22 @@ const RacesService =
             }
         };
 
-        const getRaceByName = async (name: string) => {
+        const getRaceByGrandPrix = async (grandPrix: string) => {
             try {
-                const response = await axios.get(`${racesEndpoint}/name/${name}`);
+                const response = await axios.get(`${racesEndpoint}/GetRaceByGrandPrix/${grandPrix}`);
+                if (response.status === 200) {
+                    return response.data;
+                } else {
+                    return [];
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
+        const getRaceByWinner = async (winnerName: string) => {
+            try {
+                const response = await axios.get(`${racesEndpoint}/GetRaceByWinner/${winnerName}`);
                 if (response.status === 200) {
                     return response.data;
                 } else {
@@ -115,7 +128,8 @@ const RacesService =
         return {
             getAllRaces,
             getRaceById,
-            getRaceByName,
+            getRaceByGrandPrix,
+            getRaceByWinner,
             postRace,
             putRace,
             deleteRace,

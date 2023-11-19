@@ -18,8 +18,8 @@ export const DriverContextProvider: FC<Props> = ({ children }) => {
     };
 
     const getDriverByName = async (name: string) => {
-        const driver = await DriversService.getDriverByName(name);
-        setDrivers([driver])
+        const drivers = await DriversService.getDriverByName(name);
+        setDrivers(drivers)
     }
 
     const addDriver = async (newDriver: IDriver, image: File) => {
@@ -38,7 +38,7 @@ export const DriverContextProvider: FC<Props> = ({ children }) => {
     }
 
     return (
-        <DriverContext.Provider value={{ drivers, getAllDrivers, getDriverByName, addDriver, removeDriver, updateDriver }}>
+        <DriverContext.Provider value={{ drivers, setDrivers, getAllDrivers, getDriverByName, addDriver, removeDriver, updateDriver }}>
             {children}
         </DriverContext.Provider>
     );
