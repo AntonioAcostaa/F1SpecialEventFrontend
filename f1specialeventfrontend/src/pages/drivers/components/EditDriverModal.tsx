@@ -18,6 +18,7 @@ const EditDriverModal = ({
     const [name, setName] = useState<string>('');
     const [age, setAge] = useState<number>(0);
     const [nationality, setNationality] = useState<string>('');
+    const [points, setPoints] = useState<number>(0);
     const [imageName, setImageName] = useState<string>('');
     const [image, setImage] = useState<File | null>(null);
 
@@ -35,6 +36,9 @@ const EditDriverModal = ({
             case 'nationality':
                 setNationality(e.currentTarget.value);
                 break;
+            case 'points':
+                setPoints(parseInt(e.currentTarget.value));
+                break;
             case 'image':
                 if (e.currentTarget.files === null) return;
                 setImage(e.currentTarget.files[0]);
@@ -46,11 +50,11 @@ const EditDriverModal = ({
         const selectedDriver = drivers.find((driver) => driver.id === id);
         setSelectedDriver(selectedDriver);
 
-        if(selectedDriver !== undefined && selectedDriver.id && selectedDriver.image) {
+        if (selectedDriver !== undefined && selectedDriver.id && selectedDriver.image) {
             setId(selectedDriver.id);
             setName(selectedDriver.name);
             setAge(selectedDriver.age);
-            setNationality(selectedDriver.nationality)
+            setNationality(selectedDriver.nationality);
             setImageName(selectedDriver.image);
         }
     };
@@ -61,9 +65,10 @@ const EditDriverModal = ({
             name: name,
             age: age,
             nationality: nationality,
+            points: points,
             image: image?.name ?? selectedDriver?.image,
         };
-        updateDriver(updatedDriver, image as File ?? null);
+        updateDriver(updatedDriver, (image as File) ?? null);
         setIsOpen(!isOpen);
     };
 
@@ -94,6 +99,8 @@ const EditDriverModal = ({
                             <input name='age' value={age} onChange={handleChange} type='number' className='form-control' />
                             <label className='form-label'>Nationality</label>
                             <input name='nationality' value={nationality} onChange={handleChange} type='text' className='form-control' />
+                            <label className='form-label'>Points</label>
+                            <input name='points' value={points} onChange={handleChange} type='number' className='form-control' />
                             <label className='form-label'>Current image</label>
                             <input name='image-name' value={imageName} onChange={handleChange} type='text' className='form-control' />
                             <label className='form-label'>New image</label>

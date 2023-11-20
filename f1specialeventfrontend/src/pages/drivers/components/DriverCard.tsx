@@ -24,6 +24,10 @@ const DriverCard = ({ driver }: { driver: IDriver }) => {
                         <p style={{ margin: 0, fontWeight: "700" }}>From:</p>{" "}
                         {driver.nationality}
                     </div>
+                    <div className="d-flex gap-2">
+                        <p style={{ margin: 0, fontWeight: "700" }}>Points:</p>{" "}
+                        {driver.points}
+                    </div>
                 </div>
             </div>
             <div className="card-footer">

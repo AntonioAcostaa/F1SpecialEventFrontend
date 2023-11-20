@@ -19,6 +19,7 @@ const EditTeamModal = ({
     const [driver1, setDriver1] = useState('');
     const [driver2, setDriver2] = useState('');
     const [imageName, setImageName] = useState<string>('');
+    const [points, setPoints] = useState<number>(0);
     const [image, setImage] = useState<File | null>(null);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -35,6 +36,9 @@ const EditTeamModal = ({
             case 'driver-two':
                 setDriver2(e.currentTarget.value);
                 break;
+            case 'points':
+                setPoints(parseInt(e.currentTarget.value));
+                break;
             case 'image':
                 if (e.currentTarget.files === null) return;
                 setImage(e.currentTarget.files[0]);
@@ -46,11 +50,11 @@ const EditTeamModal = ({
         const selectedTeam = teams.find((team) => team.id === id);
         setSelectedTeam(selectedTeam);
 
-        if(selectedTeam !== undefined && selectedTeam.id && selectedTeam.image) {
+        if (selectedTeam !== undefined && selectedTeam.id && selectedTeam.image) {
             setId(selectedTeam.id);
             setManufacturer(selectedTeam.manufacturer);
             setDriver1(selectedTeam.driver1);
-            setDriver2(selectedTeam.driver2)
+            setDriver2(selectedTeam.driver2);
             setImageName(selectedTeam.image);
         }
     };
@@ -61,9 +65,10 @@ const EditTeamModal = ({
             manufacturer: manufacturer,
             driver1: driver1,
             driver2: driver2,
+            points: points,
             image: image?.name ?? selectedTeam?.image,
         };
-        updateTeam(updatedTeam, image as File ?? null);
+        updateTeam(updatedTeam, (image as File) ?? null);
         setIsOpen(!isOpen);
     };
 
@@ -86,17 +91,19 @@ const EditTeamModal = ({
                     </Form.Select>
                     {selectedTeam && (
                         <>
-                    <label className='form-label'>Manufacturer</label>
-                    <input name='manufacturer' value={manufacturer} onChange={handleChange} type='text' className='form-control' />
-                    <label className='form-label'>First driver</label>
-                    <input name='driver-one' value={driver1} onChange={handleChange} type='text' className='form-control' />
-                    <label className='form-label'>Second driver</label>
-                    <input name='driver-two' value={driver2} onChange={handleChange} type='text' className='form-control' />
-                    <label className='form-label'>Current image</label>
-                    <input name='image-name' value={imageName} onChange={handleChange} type='text' className='form-control' />
-                    <label className='form-label'>Image</label>
-                    <input name='image' onChange={handleChange} type='file' className='form-control' />
-                    </>
+                            <label className='form-label'>Manufacturer</label>
+                            <input name='manufacturer' value={manufacturer} onChange={handleChange} type='text' className='form-control' />
+                            <label className='form-label'>First driver</label>
+                            <input name='driver-one' value={driver1} onChange={handleChange} type='text' className='form-control' />
+                            <label className='form-label'>Second driver</label>
+                            <input name='driver-two' value={driver2} onChange={handleChange} type='text' className='form-control' />
+                            <label className='form-label'>Points</label>
+                            <input name='points' value={points} onChange={handleChange} type='number' className='form-control' />
+                            <label className='form-label'>Current image</label>
+                            <input name='image-name' value={imageName} onChange={handleChange} type='text' className='form-control' />
+                            <label className='form-label'>Image</label>
+                            <input name='image' onChange={handleChange} type='file' className='form-control' />
+                        </>
                     )}
                 </form>
             </Modal.Body>

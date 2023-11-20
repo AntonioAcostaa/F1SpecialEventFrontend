@@ -19,6 +19,8 @@ const TeamCard = ({ team }: { team: ITeam }) => {
                     First driver: {team.driver1}
                     <br></br>
                     Second driver: {team.driver2}
+                    <br></br>
+                    Points: {team.points}
                 </p>
             </div>
             <div className="card-footer">

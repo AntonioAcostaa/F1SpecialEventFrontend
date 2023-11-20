@@ -3,6 +3,7 @@ interface IDriver {     //Interfacet sikrer typesafety for IDriver-objekter, at 
     name : string;
     age : number;
     nationality : string;
+    points : number;
     image : string | undefined;
 }
 
