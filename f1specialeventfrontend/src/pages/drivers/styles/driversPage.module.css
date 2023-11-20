@@ -1,0 +1,26 @@
+.buttonContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.buttonContainer button {
+    max-height: 50px;
+}
+
+.accordion {
+    --bs-accordion-color: black !important;
+    --bs-accordion-btn-bg: #dc3545 !important; 
+    --bs-accordion-btn-color: white !important;
+    --bs-accordion-active-bg: #dc3545 !important;
+    --bs-accordion-active-color: white !important;
+    --bs-accordion-btn-focus-border-color: #dc3545 !important;
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25) !important;
+    width: 30%;
+    min-width: 300px;
+}
+
+.filterBody {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
