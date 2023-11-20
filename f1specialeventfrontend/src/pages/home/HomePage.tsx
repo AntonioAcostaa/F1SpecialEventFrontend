@@ -2,6 +2,8 @@ import { useContext, useEffect } from 'react';
 import '../../assets/fonts/fonts.css';
 import { ActivePageContext } from '../../contexts/ActivePageContext';
 import IActivePageContext, { ActivePage } from '../../interfaces/IActivePageContext';
+import ConstructorsList from './components/ConstructorsList';
+import DriversList from './components/DriversList';
 
 const HomePage = () => {
     const { setActivePage } = useContext(ActivePageContext) as IActivePageContext;
@@ -20,7 +22,10 @@ const HomePage = () => {
                     height: '380px',
                 }}></header>
             <section className='container'>
-                
+                <div className='row'>
+                <ConstructorsList />
+                <DriversList />
+                </div>
             </section>
         </>
     );
