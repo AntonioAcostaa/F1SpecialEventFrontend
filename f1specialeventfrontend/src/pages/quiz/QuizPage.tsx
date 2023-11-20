@@ -11,19 +11,34 @@ const QuizPage = () => {
     const { setActivePage } = useContext(
         ActivePageContext
     ) as IActivePageContext;
+
     useEffect(() => {
         setActivePage(ActivePage.quiz);
+        localStorage.setItem("name", name);
+        localStorage.setItem("score", JSON.stringify(score));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const questions: IQuizQuestions[] = QuizModule.getQuizArray();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [score, setScore] = useState(0);
+    const [isQuizStarted, setIsQuizStarted] = useState(false);
+    const [name, setName] = useState("");
+
     const [selectedAnswer, setSelectedAnswer] = useState<{
         id: number;
         answer: string;
         isCorrect: boolean;
     } | null>(null);
+
+    /*const saveScore = () => {
+        const newUser = { name, score };
+        const storedUsers = localStorage.getItem("ScoreByUser");
+        const users = storedUsers ? JSON.parse(storedUsers) : [];
+        users.push(newUser);
+        localStorage.setItem("ScoreByUser", JSON.stringify(users));
+        return saveScore;
+    };*/
 
     const listQuiz = () => {
         if (currentQuestionIndex >= questions.length) {
@@ -33,6 +48,7 @@ const QuizPage = () => {
                     <div className="cardHeader m-5">
                         Your score is:{" "}
                         <h2 className="text-danger p-2">{score}</h2>
+                        saveScore();
                     </div>
                     <div className="">
                         <button
@@ -116,6 +132,36 @@ const QuizPage = () => {
             setScore(score + 1);
         }
     };
+
+    if (!isQuizStarted) {
+        return (
+            <div className="container">
+                <div className="header col-12 mx-auto rounded text-center p-4 border-top border-5 border-danger border-end mb-1 mt-3">
+                    <h3 className="">Enter your name to start the quiz</h3>
+                    <br />
+                    <form
+                        className="d-flex flex-column justify-content-center align-items-center"
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            if (name !== "") {
+                                setIsQuizStarted(true);
+                            }
+                        }}
+                    >
+                        <input
+                            type="text"
+                            placeholder="Your name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                        <button type="submit" className="btn btn-danger m-2">
+                            Start Quiz
+                        </button>
+                    </form>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="container">
