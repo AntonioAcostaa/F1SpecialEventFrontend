@@ -99,6 +99,20 @@ const Navigation = () => {
                                 Races
                             </Link>
                         </li>
+                        <li className="nav-item">
+                            <Link
+                                className={
+                                    activePage === ActivePage.quiz
+                                        ? "navtext nav-link border-danger border-top border-end border-2 rounded m-2"
+                                        : "navtext nav-link border-secondary border-top border-end border-2 rounded m-2"
+                                }
+                                to="/quiz"
+                                onClick={() => setActivePage(ActivePage.quiz)}
+                                style={{ fontSize: 14 }}
+                            >
+                                Quiz
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -10,4 +10,5 @@ export enum ActivePage {
     drivers, 
     teams, 
     races,
+    quiz,
 }

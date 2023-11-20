@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { HomePage, DriversPage, TeamsPage, RacesPage, NotFoundPage } from '../pages';
+import { HomePage, DriversPage, TeamsPage, RacesPage, QuizPage, NotFoundPage } from '../pages';
 import Navigation from './Navigation';
 import { DriverContextProvider } from '../contexts/DriverContext';
 import { TeamContextProvider } from '../contexts/TeamContext';
@@ -24,6 +24,7 @@ const Router = () => {
                                     <Route path='/drivers' element={<DriversPage />} />
                                     <Route path='/teams' element={<TeamsPage />} />
                                     <Route path='/races' element={<RacesPage />} />
+                                    <Route path='/quiz' element={<QuizPage />} />
                                     <Route path='*' element={<NotFoundPage />} />
                                 </Routes>
                             </DriverContextProvider>
