@@ -24,21 +24,13 @@ const QuizPage = () => {
     const [score, setScore] = useState(0);
     const [isQuizStarted, setIsQuizStarted] = useState(false);
     const [name, setName] = useState("");
+    const scoreArray = [];
 
     const [selectedAnswer, setSelectedAnswer] = useState<{
         id: number;
         answer: string;
         isCorrect: boolean;
     } | null>(null);
-
-    /*const saveScore = () => {
-        const newUser = { name, score };
-        const storedUsers = localStorage.getItem("ScoreByUser");
-        const users = storedUsers ? JSON.parse(storedUsers) : [];
-        users.push(newUser);
-        localStorage.setItem("ScoreByUser", JSON.stringify(users));
-        return saveScore;
-    };*/
 
     const listQuiz = () => {
         if (currentQuestionIndex >= questions.length) {
@@ -48,7 +40,6 @@ const QuizPage = () => {
                     <div className="cardHeader m-5">
                         Your score is:{" "}
                         <h2 className="text-danger p-2">{score}</h2>
-                        saveScore();
                     </div>
                     <div className="">
                         <button
@@ -64,6 +55,17 @@ const QuizPage = () => {
                 </div>
             );
         }
+        /*
+                    <div className="d-flex justify-content-start mt-auto">
+                        <h2 className=" header p-2">Scores:</h2>
+                        {scoreArray.map((score, index) => (
+                            <div className="cardHeader m-3" key={index}>
+                                <p>Name: {score.name}</p>
+                                <p>Score: {score.score}</p>
+                            </div>
+                        ))}
+                    </div>
+                    */
 
         const question = questions[currentQuestionIndex];
         return (
@@ -163,6 +165,29 @@ const QuizPage = () => {
         );
     }
 
+    const saveScore = {
+        name: name,
+        score: score,
+    };
+
+    scoreArray.push(saveScore);
+
+    const scoreArrayStringified = JSON.stringify(scoreArray);
+
+    localStorage.setItem("ScoreByUser", scoreArrayStringified);
+
+    //se på om dette kan lagre flere scores i samme array
+    /*  
+    
+    const storedScores = localStorage.getItem("ScoreByUser")
+    const scoreArray = storedScores ? JSON.parse(storedScores) : []; 
+    const saveScore = {
+        name: name,
+        score: score,
+    };
+    scoreArray.push(saveScore);
+    localStorage.setItem("ScoreByUser", JSON.stringify(scoreArray));
+     */
     return (
         <div className="container">
             <div>
