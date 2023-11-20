@@ -1,8 +1,6 @@
 import IQuizQuestions from "../interfaces/IQuizQuestions";
 
-
-const QuizModule = (()=> {
-
+const QuizModule = (() => {
     const quizArray: IQuizQuestions[] = [
         {
             id: 1,
@@ -28,7 +26,7 @@ const QuizModule = (()=> {
                     answer: "McLaren",
                     isCorrect: false,
                 },
-            ]
+            ],
         },
         {
             id: 2,
@@ -54,7 +52,7 @@ const QuizModule = (()=> {
                     answer: "McLaren",
                     isCorrect: false,
                 },
-            ]
+            ],
         },
         {
             id: 3,
@@ -80,7 +78,7 @@ const QuizModule = (()=> {
                     answer: "Aston Martin",
                     isCorrect: false,
                 },
-            ]
+            ],
         },
         {
             id: 4,
@@ -106,7 +104,7 @@ const QuizModule = (()=> {
                     answer: "McLaren",
                     isCorrect: true,
                 },
-            ]
+            ],
         },
         {
             id: 5,
@@ -132,7 +130,7 @@ const QuizModule = (()=> {
                     answer: "Williams",
                     isCorrect: true,
                 },
-            ]
+            ],
         },
         {
             id: 6,
@@ -158,25 +156,28 @@ const QuizModule = (()=> {
                     answer: "AlphaTauri",
                     isCorrect: true,
                 },
-            ]
+            ],
         },
-    ]
+    ];
 
     const getQuizArray = () => {
         return structuredClone(quizArray);
-    }
+    };
 
     const checkAnswer = (questionId: number, answerId: number) => {
-        const question = quizArray.find(question => question.id === questionId);
-        const answer = question?.answers.find(answer => answer.id === answerId);
+        const question = quizArray.find(
+            (question) => question.id === questionId
+        );
+        const answer = question?.answers.find(
+            (answer) => answer.id === answerId
+        );
         return answer?.isCorrect;
-    }
+    };
 
     return {
         getQuizArray,
         checkAnswer,
-    }
-
+    };
 })();
 
 export default QuizModule;
