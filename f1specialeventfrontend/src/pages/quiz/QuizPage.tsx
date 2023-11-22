@@ -6,6 +6,7 @@ import IActivePageContext, {
     ActivePage,
 } from "../../interfaces/IActivePageContext";
 import "../../assets/fonts/fonts.css";
+import "../quiz/styles/QuizPage.css";
 
 const QuizPage = () => {
     const { setActivePage } = useContext(
@@ -24,7 +25,7 @@ const QuizPage = () => {
     const [score, setScore] = useState(0);
     const [isQuizStarted, setIsQuizStarted] = useState(false);
     const [name, setName] = useState("");
-    const scoreArray = [];
+    //const scoreArray: { name: string; score: number }[] = [];
 
     const [selectedAnswer, setSelectedAnswer] = useState<{
         id: number;
@@ -34,6 +35,23 @@ const QuizPage = () => {
 
     const listQuiz = () => {
         if (currentQuestionIndex >= questions.length) {
+            const storedScores = localStorage.getItem("ScoreByUser");
+            const scoreArray = storedScores ? JSON.parse(storedScores) : [];
+
+            const saveScore = {
+                name: name,
+                score: score,
+            };
+
+            const userExists = scoreArray.some(
+                (user) => user.name === saveScore.name
+            );
+
+            if (!userExists) {
+                scoreArray.push(saveScore);
+            }
+            localStorage.setItem("ScoreByUser", JSON.stringify(scoreArray));
+
             return (
                 <div className="container m-5">
                     <h2>You have reached the end of the quiz!</h2>
@@ -41,10 +59,33 @@ const QuizPage = () => {
                         Your score is:{" "}
                         <h2 className="text-danger p-2">{score}</h2>
                     </div>
-                    <div className="">
+                    <h2 className="m-5">Scores:</h2>
+                    <div className="scores shadow rounded border-bottom border-5 border-danger border-start">
+                        <div className="scoresFont d-flex flex-column ">
+                            {scoreArray.map(
+                                (score: { name: string }, index: number) => (
+                                    <h5 key={index} className="scoresFont p-2">
+                                        {score.name}
+                                    </h5>
+                                )
+                            )}
+                        </div>
+
+                        <div className="scoresFont d-flex flex-column ">
+                            {scoreArray.map(
+                                (score: { score: number }, index: number) => (
+                                    <h5 key={index} className="text-danger p-2">
+                                        {score.score}
+                                    </h5>
+                                )
+                            )}
+                        </div>
+                    </div>
+                    <div className="m-3">
                         <button
                             className="btn btn-danger btn-primary"
                             onClick={() => {
+                                setIsQuizStarted(false);
                                 setCurrentQuestionIndex(0);
                                 setScore(0);
                             }}
@@ -55,17 +96,6 @@ const QuizPage = () => {
                 </div>
             );
         }
-        /*
-                    <div className="d-flex justify-content-start mt-auto">
-                        <h2 className=" header p-2">Scores:</h2>
-                        {scoreArray.map((score, index) => (
-                            <div className="cardHeader m-3" key={index}>
-                                <p>Name: {score.name}</p>
-                                <p>Score: {score.score}</p>
-                            </div>
-                        ))}
-                    </div>
-                    */
 
         const question = questions[currentQuestionIndex];
         return (
@@ -165,29 +195,6 @@ const QuizPage = () => {
         );
     }
 
-    const saveScore = {
-        name: name,
-        score: score,
-    };
-
-    scoreArray.push(saveScore);
-
-    const scoreArrayStringified = JSON.stringify(scoreArray);
-
-    localStorage.setItem("ScoreByUser", scoreArrayStringified);
-
-    //se på om dette kan lagre flere scores i samme array
-    /*  
-    
-    const storedScores = localStorage.getItem("ScoreByUser")
-    const scoreArray = storedScores ? JSON.parse(storedScores) : []; 
-    const saveScore = {
-        name: name,
-        score: score,
-    };
-    scoreArray.push(saveScore);
-    localStorage.setItem("ScoreByUser", JSON.stringify(scoreArray));
-     */
     return (
         <div className="container">
             <div>
@@ -212,5 +219,3 @@ const QuizPage = () => {
 };
 
 export default QuizPage;
-//Use localstorage to store the results of the quiz!
-//Sjekk om vi finner en måte å bruke modules mappen
