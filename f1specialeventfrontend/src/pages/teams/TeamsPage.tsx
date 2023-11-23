@@ -56,7 +56,7 @@ const TeamsPage = () => {
     return (
         <div className="container p-3">
             <div
-                className={`buttonsFont container p-2 m-2 ${styles.buttonContainer}`}
+                className={`buttonsFont container p-2 ${styles.buttonContainer}`}
             >
                 <button
                     className="btn btn-danger mx-1"

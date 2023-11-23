@@ -59,7 +59,7 @@ const RacesPage = () => {
 
     return (
         <div className='container p-3'>
-            <div className={`buttonsFont container p-2 m-2 ${styles.buttonContainer}`}>
+            <div className={`buttonsFont container p-2 ${styles.buttonContainer}`}>
                 <button className='btn btn-danger mx-1' onClick={() => setAddRaceModalIsOpen(!addRaceModalIsOpen)}>
                     Add race
                 </button>

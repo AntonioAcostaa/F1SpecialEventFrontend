@@ -86,7 +86,7 @@ const DriversPage = () => {
         <>
             <div className=" container p-3">
                 <div
-                    className={`buttonsFont container p-2 m-2 ${styles.buttonContainer}`}
+                    className={`buttonsFont container p-2 ${styles.buttonContainer}`}
                 >
                     <button
                         className="btn btn-danger mx-1"
@@ -172,9 +172,9 @@ const DriversPage = () => {
                         </Accordion.Item>
                     </Accordion>
                 </div>
-                <div className=" header col-12 mx-auto text-center rounded p-4 border-top border-5 border-danger border-end mb-1 mt-3">
+                <header className=" header col-12 mx-auto text-center rounded p-4 border-top border-5 border-danger border-end mb-1 mt-3">
                     <h1>F1 Drivers 2023</h1>
-                </div>
+                </header>
                 <div className="container">
                     {drivers && drivers.length !== 0 && (
                         <DriverList
