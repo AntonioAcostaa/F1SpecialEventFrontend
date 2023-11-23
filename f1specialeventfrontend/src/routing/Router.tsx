@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { HomePage, DriversPage, TeamsPage, RacesPage, QuizPage, NotFoundPage } from '../pages';
-import Navigation from './Navigation';
+import Navigation from '../components/shared/Navigation';
 import { DriverContextProvider } from '../contexts/DriverContext';
 import { TeamContextProvider } from '../contexts/TeamContext';
 import { ActivePageContextProvider } from '../contexts/ActivePageContext';

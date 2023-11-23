@@ -4,6 +4,7 @@ import { ActivePageContext } from '../../contexts/ActivePageContext';
 import IActivePageContext, { ActivePage } from '../../interfaces/IActivePageContext';
 import ConstructorsList from './components/ConstructorsList';
 import DriversList from './components/DriversList';
+import Footer from '../../components/shared/Footer';
 
 const HomePage = () => {
     const { setActivePage } = useContext(ActivePageContext) as IActivePageContext;
@@ -29,6 +30,7 @@ const HomePage = () => {
                     </div>
                 </section>
             </main>
+            <Footer/>
         </>
     );
 };

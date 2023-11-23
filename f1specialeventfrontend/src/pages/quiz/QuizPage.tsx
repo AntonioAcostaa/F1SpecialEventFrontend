@@ -7,6 +7,7 @@ import IActivePageContext, {
 } from "../../interfaces/IActivePageContext";
 import "../../assets/fonts/fonts.css";
 import "../quiz/styles/QuizPage.css";
+import Footer from "../../components/shared/Footer";
 
 const QuizPage = () => {
     const { setActivePage } = useContext(
@@ -53,6 +54,7 @@ const QuizPage = () => {
             localStorage.setItem("ScoreByUser", JSON.stringify(scoreArray));
 
             return (
+                <>
                 <div className="container m-5">
                     <h2>You have reached the end of the quiz!</h2>
                     <div className="cardHeader m-5">
@@ -94,11 +96,14 @@ const QuizPage = () => {
                         </button>
                     </div>
                 </div>
+                <Footer/>
+                </>
             );
         }
 
         const question = questions[currentQuestionIndex];
         return (
+            <>
             <div
                 className="container d-flex flex-column justify-content-between"
                 style={{ height: "100%" }}
@@ -151,6 +156,8 @@ const QuizPage = () => {
                     </button>
                 </div>
             </div>
+            <Footer/>
+            </>
         );
     };
 
@@ -167,6 +174,7 @@ const QuizPage = () => {
 
     if (!isQuizStarted) {
         return (
+            <>
             <div className="container">
                 <div className="header col-12 mx-auto rounded text-center p-4 border-top border-5 border-danger border-end mb-1 mt-3">
                     <h3 className="">Enter your name to start the quiz</h3>
@@ -192,10 +200,13 @@ const QuizPage = () => {
                     </form>
                 </div>
             </div>
+            <Footer/>
+            </>
         );
     }
 
     return (
+        <>
         <div className="container">
             <div>
                 <div className="header col-12 mx-auto rounded text-center p-4 border-top border-5 border-danger border-end mb-1 mt-3">
@@ -215,6 +226,8 @@ const QuizPage = () => {
                 </div>
             </div>
         </div>
+        <Footer/>
+        </>
     );
 };
 

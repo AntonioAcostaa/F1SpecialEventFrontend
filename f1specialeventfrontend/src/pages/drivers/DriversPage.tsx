@@ -15,6 +15,7 @@ import styles from "./styles/driversPage.module.css";
 import { TeamContext } from "../../contexts/TeamContext";
 import ITeamContext from "../../interfaces/ITeamContext";
 import IDriver from "../../interfaces/IDriver";
+import Footer from "../../components/shared/Footer";
 
 const DriversPage = () => {
     const [addDriverModalIsOpen, setAddDriverModalIsOpen] = useState(false);
@@ -210,6 +211,7 @@ const DriversPage = () => {
                     updateDriver={updateDriver}
                 />
             )}
+            <Footer />
         </>
     );
 };
