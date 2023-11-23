@@ -15,18 +15,20 @@ const HomePage = () => {
     return (
         <>
             <header
-                className='p-5 text-center bg-image rounded-3 align-items-center d-flex flex-column justify-content-center'
+                className='p-5 text-center bg-image align-items-center d-flex flex-column justify-content-center border-bottom border-danger mb-2'
                 style={{
                     backgroundImage: `url(./src/assets/images/ferrarivredbull2.png)`,
                     backgroundPosition: 'center',
                     height: '380px',
                 }}></header>
-            <section className='container'>
-                <div className='row'>
-                <ConstructorsList />
-                <DriversList />
-                </div>
-            </section>
+            <main>
+                <section className='container'>
+                    <div className='row'>
+                        <ConstructorsList />
+                        <DriversList />
+                    </div>
+                </section>
+            </main>
         </>
     );
 };

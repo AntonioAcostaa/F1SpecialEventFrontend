@@ -12,7 +12,7 @@ const Navigation = () => {
     ) as IActivePageContext;
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-danger border-2">
             <div className="container d-flex slign-items-center">
                 <img
                     className="navbar-brand"
