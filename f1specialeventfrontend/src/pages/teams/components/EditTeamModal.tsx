@@ -55,6 +55,7 @@ const EditTeamModal = ({
             setManufacturer(selectedTeam.manufacturer);
             setDriver1(selectedTeam.driver1);
             setDriver2(selectedTeam.driver2);
+            setPoints(selectedTeam.points);
             setImageName(selectedTeam.image);
         }
     };

@@ -55,6 +55,7 @@ const EditDriverModal = ({
             setName(selectedDriver.name);
             setAge(selectedDriver.age);
             setNationality(selectedDriver.nationality);
+            setPoints(selectedDriver.points);
             setImageName(selectedDriver.image);
         }
     };
