@@ -1,5 +1,4 @@
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
-import TeamList from './components/Teamslist';
 import { TeamContext } from '../../contexts/TeamContext';
 import ITeamContext from '../../interfaces/ITeamContext';
 import AddTeamModal from './components/AddTeamModal';
@@ -11,6 +10,7 @@ import '../../assets/fonts/fonts.css';
 import styles from './styles/teamsPage.module.css';
 import { Accordion } from 'react-bootstrap';
 import Footer from '../../components/shared/Footer';
+import TeamList from './components/Teamslist';
 
 const TeamsPage = () => {
     const [addTeamModalIsOpen, setAddTeamModalIsOpen] = useState<boolean>(false);

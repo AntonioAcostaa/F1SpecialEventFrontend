@@ -3,10 +3,19 @@ import styles from '../styles/driverList.module.css';
 import '../../../assets/fonts/fonts.css';
 
 const DriverCard = ({ driver }: { driver: IDriver }) => {
+
+    const formattedName = driver.name.replace(/ /g, '-').toLowerCase();
+    const url = `https://www.formula1.com/en/drivers/${formattedName}.html`;
+
+
+    const openDriverPage = () => {
+        window.open(url, '_blank');
+    };
+
     return (
         <article
             className={`${styles.cardContainer} border-3 rounded shadow border-bottom border-danger mx-auto text-center p-1 m-4`}
-            style={{ width: '300px', padding: 0 }}>
+            style={{ width: '300px', padding: 0 }} onClick={openDriverPage}>
             <img src={`http://localhost:5014/images/${driver.image}`} className='card-img-top rounded' alt={`Portret image. PNG. ${driver.name}`} />
             <div className='card-body '>
                 <h5 className='cardHeader card-title p-1'>{driver.name}</h5>
