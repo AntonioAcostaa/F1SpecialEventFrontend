@@ -1,5 +1,4 @@
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
-//import format from "date-fns/format";
 import RaceList from './components/RaceList';
 import { RaceContext } from '../../contexts/RaceContext';
 import IRaceContext from '../../interfaces/IRaceContext';
@@ -14,15 +13,17 @@ import { Accordion } from 'react-bootstrap';
 import Footer from '../../components/shared/Footer';
 
 const RacesPage = () => {
-    const [addRaceModalIsOpen, setAddRaceModalIsOpen] = useState(false);
-    const [deleteRaceModalIsOpen, setDeleteRaceModalIsOpen] = useState(false);
-    const [updateRaceModalIsOpen, setUpdateRaceModalIsOpen] = useState(false);
+
+    const [addRaceModalIsOpen, setAddRaceModalIsOpen] = useState<boolean>(false);
+    const [deleteRaceModalIsOpen, setDeleteRaceModalIsOpen] = useState<boolean>(false);
+    const [updateRaceModalIsOpen, setUpdateRaceModalIsOpen] = useState<boolean>(false);
+
+    const [winnerName, setWinnerName] = useState<string>('');
+    const [trackName, setTrackName] = useState<string>('');
 
     const { races, getAllRaces, getRacesByGrandPrix, getRacesByWinner, addRace, removeRace, updateRace } = useContext(RaceContext) as IRaceContext;
     const { setActivePage } = useContext(ActivePageContext) as IActivePageContext;
 
-    const [winnerName, setWinnerName] = useState<string>('');
-    const [trackName, setTrackName] = useState<string>('');
     useEffect(() => {
         setActivePage(ActivePage.races);
         getAllRaces();
@@ -110,7 +111,7 @@ const RacesPage = () => {
                 <section className='header col-12 mx-auto rounded text-center p-4 border-top border-5 border-danger border-end mb-1 mt-3'>
                     <h1>F1 Race Results 2023</h1>
                 </section>
-                <div className='col-12 text-start'>{races.length !== 0 && <RaceList races={races} />}</div>
+                <section className='col-12 text-start'>{races.length !== 0 && <RaceList races={races} />}</section>
                 {addRaceModalIsOpen && <AddRaceModal isOpen={addRaceModalIsOpen} setIsOpen={setAddRaceModalIsOpen} addRace={addRace} />}
                 {deleteRaceModalIsOpen && (
                     <DeleteRaceModal isOpen={deleteRaceModalIsOpen} setIsOpen={setDeleteRaceModalIsOpen} races={races} removeRace={removeRace} />

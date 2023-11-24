@@ -4,10 +4,9 @@ import TeamCard from "./TeamCard";
 const TeamList = ({ teams }: { teams: ITeam[] }) => {
     return (
         <section className="row gap-1">
-            {teams &&
-                teams.map((team) => {
-                    return <TeamCard key={team.id} team={team} />;
-                })}
+            {teams && teams.map((team) => (
+                <TeamCard key={team.id} team={team} />
+            ))}
         </section>
     );
 };

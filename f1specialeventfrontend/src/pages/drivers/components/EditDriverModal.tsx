@@ -60,7 +60,7 @@ const EditDriverModal = ({
         }
     };
 
-    const saveDriver = () => {
+    const putDriver = () => {
         const updatedDriver = {
             id: id,
             name: name,
@@ -114,7 +114,7 @@ const EditDriverModal = ({
                 <Button variant='secondary' onClick={() => setIsOpen(!isOpen)}>
                     Close
                 </Button>
-                <Button variant='danger' onClick={saveDriver}>
+                <Button variant='danger' onClick={putDriver}>
                     Save Changes
                 </Button>
             </Modal.Footer>

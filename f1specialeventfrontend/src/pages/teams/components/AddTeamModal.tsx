@@ -1,5 +1,4 @@
 import { ChangeEvent, useState } from 'react';
-import ReactModal from 'react-modal';
 import ITeam from '../../../interfaces/ITeam';
 import { Modal, Button } from 'react-bootstrap';
 
@@ -12,9 +11,10 @@ const AddTeamModal = ({
     setIsOpen: (isOpen: boolean) => void;
     addTeam: (team: ITeam, image: File) => void;
 }) => {
-    const [manufacturer, setManuFacturer] = useState('');
-    const [driver1, setDriver1] = useState('');
-    const [driver2, setDriver2] = useState('');
+    const [manufacturer, setManuFacturer] = useState<string>('');
+    const [driver1, setDriver1] = useState<string>('');
+    const [driver2, setDriver2] = useState<string>('');
+    const [points, setPoints] = useState<number>(0);
     const [image, setImage] = useState<File | null>(null);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -28,6 +28,9 @@ const AddTeamModal = ({
             case 'driver-two':
                 setDriver2(e.currentTarget.value);
                 break;
+            case 'points':
+                setPoints(parseInt(e.currentTarget.value));
+                break;
             case 'image':
                 if (e.currentTarget.files === null) return;
                 setImage(e.currentTarget.files[0]);
@@ -35,18 +38,17 @@ const AddTeamModal = ({
         }
     };
 
-    const saveTeam = () => {
+    const postTeam = () => {
         const newTeam = {
             manufacturer: manufacturer,
             driver1: driver1,
             driver2: driver2,
+            points: points,
             image: image?.name,
         };
         addTeam(newTeam, image as File);
         setIsOpen(!isOpen);
     };
-
-    ReactModal.setAppElement('#root');
 
     return (
         <Modal show={isOpen} onHide={() => setIsOpen(!isOpen)}>
@@ -61,6 +63,8 @@ const AddTeamModal = ({
                     <input name='driver-one' onChange={handleChange} type='text' className='form-control' />
                     <label className='form-label'>Second driver</label>
                     <input name='driver-two' onChange={handleChange} type='text' className='form-control' />
+                    <label className='form-label'>Points</label>
+                    <input name='points' onChange={handleChange} type='number' className='form-control' />
                     <label className='form-label'>Image</label>
                     <input name='image' onChange={handleChange} type='file' className='form-control' />
                 </form>
@@ -69,7 +73,7 @@ const AddTeamModal = ({
                 <Button variant='secondary' onClick={() => setIsOpen(!isOpen)}>
                     Close
                 </Button>
-                <Button variant='danger' onClick={saveTeam}>
+                <Button variant='danger' onClick={postTeam}>
                     Save team
                 </Button>
             </Modal.Footer>

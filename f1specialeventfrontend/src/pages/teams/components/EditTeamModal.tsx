@@ -15,9 +15,9 @@ const EditTeamModal = ({
 }) => {
     const [id, setId] = useState<number>(0);
     const [selectedTeam, setSelectedTeam] = useState<ITeam>();
-    const [manufacturer, setManufacturer] = useState('');
-    const [driver1, setDriver1] = useState('');
-    const [driver2, setDriver2] = useState('');
+    const [manufacturer, setManufacturer] = useState<string>('');
+    const [driver1, setDriver1] = useState<string>('');
+    const [driver2, setDriver2] = useState<string>('');
     const [imageName, setImageName] = useState<string>('');
     const [points, setPoints] = useState<number>(0);
     const [image, setImage] = useState<File | null>(null);
@@ -60,7 +60,7 @@ const EditTeamModal = ({
         }
     };
 
-    const saveTeam = () => {
+    const putTeam = () => {
         const updatedTeam = {
             id: id,
             manufacturer: manufacturer,
@@ -112,7 +112,7 @@ const EditTeamModal = ({
                 <Button variant='secondary' onClick={() => setIsOpen(!isOpen)}>
                     Close
                 </Button>
-                <Button variant='danger' onClick={saveTeam}>
+                <Button variant='danger' onClick={putTeam}>
                     Update team
                 </Button>
             </Modal.Footer>

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import ReactModal from 'react-modal';
 import IRace from '../../../interfaces/IRace';
 
 const DeleteRaceModal = ({
@@ -14,6 +13,7 @@ const DeleteRaceModal = ({
     races: IRace[];
     removeRace: (id: number) => void;
 }) => {
+
     const [id, setId] = useState<number>(0);
 
     const deleteRace = () => {
@@ -21,12 +21,10 @@ const DeleteRaceModal = ({
         setIsOpen(!isOpen);
     };
 
-    ReactModal.setAppElement('#root');
-
     return (
         <Modal show={isOpen} onHide={() => setIsOpen(!isOpen)}>
             <Modal.Header closeButton>
-                <Modal.Title>Delete race by ID</Modal.Title>
+                <Modal.Title>Delete race</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <form>

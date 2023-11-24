@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
-import ReactModal from 'react-modal';
 import IDriver from '../../../interfaces/IDriver';
 
 const DeleteDriverModal = ({
@@ -20,8 +19,6 @@ const DeleteDriverModal = ({
         removeDriver(id);
         setIsOpen(!isOpen);
     };
-
-    ReactModal.setAppElement('#root');
 
     return (
         <Modal show={isOpen} onHide={() => setIsOpen(!isOpen)}>

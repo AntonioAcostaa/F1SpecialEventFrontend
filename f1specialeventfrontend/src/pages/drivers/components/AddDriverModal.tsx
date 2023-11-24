@@ -15,6 +15,7 @@ const AddDriverModal = ({
     const [name, setName] = useState('');
     const [age, setAge] = useState<number>(0);
     const [nationality, setNationality] = useState('');
+    const [points, setPoints] = useState<number>(0);
     const [image, setImage] = useState<File | null>(null);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -24,6 +25,9 @@ const AddDriverModal = ({
                 break;
             case 'age':
                 setAge(parseInt(e.currentTarget.value));
+                break;
+            case 'points':
+                setPoints(parseInt(e.currentTarget.value));
                 break;
             case 'nationality':
                 setNationality(e.currentTarget.value);
@@ -35,11 +39,12 @@ const AddDriverModal = ({
         }
     };
 
-    const saveDriver = () => {
+    const postDriver = () => {
         const newDriver = {
             name: name,
             age: age,
             nationality: nationality,
+            points: points,
             image: image?.name,
         };
         addDriver(newDriver, image as File);
@@ -61,6 +66,8 @@ const AddDriverModal = ({
                     <input name='age' onChange={handleChange} type='number' className='form-control' />
                     <label className='form-label'>Nationality</label>
                     <input name='nationality' onChange={handleChange} type='text' className='form-control' />
+                    <label className='form-label'>Points</label>
+                    <input name='points' onChange={handleChange} type='number' className='form-control' />
                     <label className='form-label'>Image</label>
                     <input name='image' onChange={handleChange} type='file' className='form-control' />
                 </form>
@@ -69,7 +76,7 @@ const AddDriverModal = ({
                 <Button variant='secondary' onClick={() => setIsOpen(!isOpen)}>
                     Close
                 </Button>
-                <Button variant='danger' onClick={saveDriver}>
+                <Button variant='danger' onClick={postDriver}>
                     Save Changes
                 </Button>
             </Modal.Footer>

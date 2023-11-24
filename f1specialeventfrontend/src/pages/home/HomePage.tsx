@@ -7,7 +7,9 @@ import DriversList from './components/DriversList';
 import Footer from '../../components/shared/Footer';
 
 const HomePage = () => {
+    
     const { setActivePage } = useContext(ActivePageContext) as IActivePageContext;
+
     useEffect(() => {
         setActivePage(ActivePage.home);
         // eslint-disable-next-line react-hooks/exhaustive-deps

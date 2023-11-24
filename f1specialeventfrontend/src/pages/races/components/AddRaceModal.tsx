@@ -1,5 +1,4 @@
 import { ChangeEvent, useState } from 'react';
-import ReactModal from 'react-modal';
 import IRace from '../../../interfaces/IRace';
 import { Modal, Button } from 'react-bootstrap';
 
@@ -12,6 +11,7 @@ const AddRaceModal = ({
     setIsOpen: (isOpen: boolean) => void;
     addRace: (race: IRace, image: File) => void;
 }) => {
+
     const [winnerName, setWinnerName] = useState('');
     const [winnerTime, setWinnerTime] = useState<Date>(new Date());
     const [grandPrix, setGrandPrix] = useState('');
@@ -39,7 +39,7 @@ const AddRaceModal = ({
         }
     };
 
-    const saveRace = () => {
+    const postRace = () => {
         const newRace = {
             winnerName: winnerName,
             winnerTime: winnerTime,
@@ -50,8 +50,6 @@ const AddRaceModal = ({
         addRace(newRace, image as File);
         setIsOpen(!isOpen);
     };
-
-    ReactModal.setAppElement('#root');
 
     return (
         <Modal show={isOpen} onHide={() => setIsOpen(!isOpen)}>
@@ -74,7 +72,7 @@ const AddRaceModal = ({
                 <Button variant='secondary' onClick={() => setIsOpen(!isOpen)}>
                     Close
                 </Button>
-                <Button variant='danger' onClick={saveRace}>
+                <Button variant='danger' onClick={postRace}>
                     Save race
                 </Button>
             </Modal.Footer>

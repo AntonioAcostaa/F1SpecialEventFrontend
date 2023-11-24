@@ -13,6 +13,7 @@ const EditRaceModal = ({
     races: IRace[];
     updateRace: (updatedRace: IRace, image: File) => void;
 }) => {
+    
     const [id, setId] = useState<number>(0);
     const [selectedRace, setSelectedRace] = useState<IRace>();
     const [winnerName, setWinnerName] = useState('');
@@ -57,7 +58,7 @@ const EditRaceModal = ({
         }
     };
 
-    const saveRace = () => {
+    const putRace = () => {
         const updatedRace = {
             id: id,
             winnerName: winnerName,
@@ -114,7 +115,7 @@ const EditRaceModal = ({
                 <Button variant='secondary' onClick={() => setIsOpen(!isOpen)}>
                     Close
                 </Button>
-                <Button variant='danger' onClick={saveRace}>
+                <Button variant='danger' onClick={putRace}>
                     Update race
                 </Button>
             </Modal.Footer>

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import ReactModal from 'react-modal';
 import ITeam from '../../../interfaces/ITeam';
 
 const DeleteTeamModal = ({
@@ -21,8 +20,6 @@ const DeleteTeamModal = ({
         setIsOpen(!isOpen);
     };
 
-    ReactModal.setAppElement('#root');
-
     return (
         <Modal show={isOpen} onHide={() => setIsOpen(!isOpen)}>
             <Modal.Header closeButton>
@@ -31,10 +28,14 @@ const DeleteTeamModal = ({
             <Modal.Body>
                 <form>
                     <Form.Select aria-label='Select team' onChange={(e) => setId(parseInt(e.target.value))}>
-                    <option key='blankChoice' hidden value="blank">-- Select team to delete --</option>
+                        <option key='blankChoice' hidden value='blank'>
+                            -- Select team to delete --
+                        </option>
                         {teams.map((team) => (
-                            <option key={team.id} value={team.id}>{team.manufacturer}</option>
-                            ))}
+                            <option key={team.id} value={team.id}>
+                                {team.manufacturer}
+                            </option>
+                        ))}
                     </Form.Select>
                 </form>
             </Modal.Body>
