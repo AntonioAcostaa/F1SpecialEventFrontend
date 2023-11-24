@@ -17,13 +17,9 @@ const HomePage = () => {
 
     return (
         <>
-            <header
-                className='p-5 text-center bg-image align-items-center d-flex flex-column justify-content-center border-bottom border-danger mb-2'
-                style={{
-                    backgroundImage: `url(./src/assets/images/ferrarivredbull2.png)`,
-                    backgroundPosition: 'center',
-                    height: '380px',
-                }}></header>
+            <header className='pb-3' >
+            <img src="./src/assets/images/f1testheader2.png" alt="Header Image. PNG Ferrari and Redbull" style={{width: "100%"}}/>
+            </header>
             <main>
                 <section className='container'>
                     <div className='row'>
