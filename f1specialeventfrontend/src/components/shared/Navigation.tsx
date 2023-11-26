@@ -5,14 +5,16 @@ import IActivePageContext from "../../interfaces/IActivePageContext";
 import { ActivePage } from "../../interfaces/IActivePageContext";
 import "../../assets/fonts/fonts.css";
 
-//Navigasjons-komponenten som skal benyttes på alle sider for å navigere mellom dem
 const Navigation = () => {
     const { activePage, setActivePage } = useContext(
         ActivePageContext
     ) as IActivePageContext;
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-danger border-2" style={{position: "sticky", top: "0", zIndex: "999"}}>
+        <nav
+            className="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-danger border-2"
+            style={{ position: "sticky", top: "0", zIndex: "999" }}
+        >
             <div className="container d-flex slign-items-center">
                 <img
                     className="navbar-brand"

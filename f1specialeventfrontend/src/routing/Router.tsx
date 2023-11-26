@@ -14,9 +14,6 @@ import { ActivePageContextProvider } from "../contexts/ActivePageContext";
 import { RaceContextProvider } from "../contexts/RaceContext";
 import { ImageContextProvider } from "../contexts/ImageContext";
 
-//BrowserRouter er en komponent soom sørger for at React har kontroll på hva som skal åpnes hvor.
-// Navigation er en komponent som inneholder lenker til de ulike sidene i applikasjonen
-// Routes definerer hvilke komponenter som skal rendres for hvilke URLer
 const Router = () => {
     return (
         <BrowserRouter>
