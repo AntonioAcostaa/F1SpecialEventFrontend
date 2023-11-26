@@ -11,7 +11,7 @@ import IActivePageContext, {
 import "../../assets/fonts/fonts.css";
 import styles from "./styles/teamsPage.module.css";
 import { Accordion } from "react-bootstrap";
-import Footer from "../../components/shared/Footer";
+import Footer from '../../Components/shared/Footer';
 import TeamList from "./components/TeamList";
 
 const TeamsPage = () => {
