@@ -20,7 +20,7 @@ const DriversPage = () => {
     const [deleteDriverModalIsOpen, setDeleteDriverModalIsOpen] = useState<boolean>(false);
     const [updateDriverModalIsOpen, setUpdateDriverModalIsOpen] = useState<boolean>(false);
 
-    const [selectedTeamId, setSelectedTeamId] = useState<number>(0);
+    const [selectedTeamName, setSelectedTeamName] = useState<string>('');
     const [driverName, setDriverName] = useState<string>('');
     const [selectedTeam, setSelectedTeam] = useState('blank');
 
@@ -45,22 +45,22 @@ const DriversPage = () => {
     };
 
     const handleFilterbyTeam = (e: ChangeEvent<HTMLSelectElement>) => {
-        setSelectedTeamId(parseInt(e.target.value));
+        setSelectedTeamName(e.target.value);
         filteredDriversByTeam();
     };
 
     const filteredDriversByTeam = () => {
-        const selectedTeam = teams.find((team) => team.id === selectedTeamId);
+        const selectedTeam = teams.find((team) => team.manufacturer === selectedTeamName);
         let filteredDriversByTeam: IDriver[] = [];
 
         if (selectedTeam) {
-            filteredDriversByTeam = drivers.filter((driver) => driver.name === selectedTeam.driver1 || driver.name === selectedTeam.driver2);
+            filteredDriversByTeam = drivers.filter((driver) => driver.team === selectedTeamName);
         }
         return filteredDriversByTeam;
     };
 
     const clearFilter = () => {
-        setSelectedTeamId(0);
+        setSelectedTeamName('');
         setDriverName('');
         getAllDrivers();
         setSelectedTeam('blank');
@@ -104,7 +104,7 @@ const DriversPage = () => {
                                         -- Select team to view --
                                     </option>
                                     {teams.map((team) => (
-                                        <option key={team.id} value={team.id}>
+                                        <option key={team.id} value={team.manufacturer}>
                                             {team.manufacturer}
                                         </option>
                                     ))}
@@ -126,7 +126,7 @@ const DriversPage = () => {
                     <h1>F1 Drivers 2023</h1>
                 </section>
                 <section className='container'>
-                    {drivers && drivers.length !== 0 && <DriverList drivers={selectedTeamId ? filteredDriversByTeam() : drivers} />}
+                    {drivers && drivers.length !== 0 && <DriverList drivers={selectedTeamName !== '' ? filteredDriversByTeam() : drivers} />}
                 </section>
             </div>
             {addDriverModalIsOpen && <AddDriverModal isOpen={addDriverModalIsOpen} setIsOpen={setAddDriverModalIsOpen} addDriver={addDriver} />}
