@@ -58,7 +58,6 @@ const QuizPage = () => {
                         style={{
                             display: 'flex',
                             width: '100%',
-                            height: '800px',
                         }}>
                         {!isQuizStarted ? (
                             <QuizStart name={name} setName={setName} setIsQuizStarted={setIsQuizStarted} />

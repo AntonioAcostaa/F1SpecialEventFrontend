@@ -28,7 +28,7 @@ const QuizResult = ({ name, score, endOfQuiz }: QuizResultProps) => {
         <div>
             {scoreArray.length >= 1 && (
                 <>
-                    <h3 className='header border-5 rounded border-bottom border-danger mx-auto text-center p-3'>Leaderboard</h3>
+                    <h3 className='header border-5 rounded border-bottom border-danger mx-auto text-center p-3 mt-3'>Leaderboard</h3>
                     <div className={`shadow rounded ${styles.scores}`}>
                         <div className='d-flex flex-column '>
                             {scoreArray.map((score: { name: string }, index: number) => (
