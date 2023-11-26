@@ -63,7 +63,7 @@ const DriversPage = () => {
         setSelectedTeamName('');
         setDriverName('');
         getAllDrivers();
-        setSelectedTeam('blank');
+        setSelectedTeam('');
     };
 
     return (
