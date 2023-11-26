@@ -10,7 +10,7 @@ import '../../assets/fonts/fonts.css';
 import styles from './styles/teamsPage.module.css';
 import { Accordion } from 'react-bootstrap';
 import Footer from '../../components/shared/Footer';
-import TeamList from './components/Teamslist';
+import TeamsList from './components/Teamslist';
 
 const TeamsPage = () => {
     const [addTeamModalIsOpen, setAddTeamModalIsOpen] = useState<boolean>(false);
@@ -85,7 +85,7 @@ const TeamsPage = () => {
                 <section className='header col-12 mx-auto text-center rounded p-4 border-top border-5 border-danger border-end mb-1 mt-3'>
                     <h1>F1 Teams 2023</h1>
                 </section>
-                <section className='container'>{teams && teams.length !== 0 && <TeamList teams={teams} />}</section>
+                <section className='container'>{teams && teams.length !== 0 && <TeamsList teams={teams} />}</section>
                 {addTeamModalIsOpen && <AddTeamModal isOpen={addTeamModalIsOpen} setIsOpen={setAddTeamModalIsOpen} addTeam={addTeam} />}
                 {deleteTeamModalIsOpen && (
                     <DeleteTeamModal isOpen={deleteTeamModalIsOpen} setIsOpen={setDeleteTeamModalIsOpen} teams={teams} removeTeam={removeTeam} />

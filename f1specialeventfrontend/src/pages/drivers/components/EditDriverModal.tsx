@@ -19,6 +19,7 @@ const EditDriverModal = ({
     const [age, setAge] = useState<number>(0);
     const [nationality, setNationality] = useState<string>('');
     const [points, setPoints] = useState<number>(0);
+    const [team, setTeam] = useState<string>('');
     const [imageName, setImageName] = useState<string>('');
     const [image, setImage] = useState<File | null>(null);
 
@@ -35,6 +36,9 @@ const EditDriverModal = ({
                 break;
             case 'nationality':
                 setNationality(e.currentTarget.value);
+                break;
+                case 'team':
+                setTeam(e.currentTarget.value);
                 break;
             case 'points':
                 setPoints(parseInt(e.currentTarget.value));
@@ -55,6 +59,7 @@ const EditDriverModal = ({
             setName(selectedDriver.name);
             setAge(selectedDriver.age);
             setNationality(selectedDriver.nationality);
+            setTeam(selectedDriver.team);
             setPoints(selectedDriver.points);
             setImageName(selectedDriver.image);
         }
@@ -66,6 +71,7 @@ const EditDriverModal = ({
             name: name,
             age: age,
             nationality: nationality,
+            team: team,
             points: points,
             image: image?.name ?? selectedDriver?.image,
         };
@@ -102,6 +108,8 @@ const EditDriverModal = ({
                             <input name='nationality' value={nationality} onChange={handleChange} type='text' className='form-control' />
                             <label className='form-label'>Points</label>
                             <input name='points' value={points} onChange={handleChange} type='number' className='form-control' />
+                            <label className='form-label'>Team</label>
+                            <input name='team' value={team} onChange={handleChange} type='text' className='form-control' />
                             <label className='form-label'>Current image</label>
                             <input name='image-name' value={imageName} onChange={handleChange} type='text' className='form-control' />
                             <label className='form-label'>New image</label>

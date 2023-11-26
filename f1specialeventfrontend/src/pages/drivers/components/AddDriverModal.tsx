@@ -16,6 +16,7 @@ const AddDriverModal = ({
     const [age, setAge] = useState<number>(0);
     const [nationality, setNationality] = useState('');
     const [points, setPoints] = useState<number>(0);
+    const [team, setTeam] = useState<string>('');
     const [image, setImage] = useState<File | null>(null);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -28,6 +29,9 @@ const AddDriverModal = ({
                 break;
             case 'points':
                 setPoints(parseInt(e.currentTarget.value));
+                break;
+            case 'team':
+                setTeam(e.currentTarget.value);
                 break;
             case 'nationality':
                 setNationality(e.currentTarget.value);
@@ -45,6 +49,7 @@ const AddDriverModal = ({
             age: age,
             nationality: nationality,
             points: points,
+            team: team,
             image: image?.name,
         };
         addDriver(newDriver, image as File);
@@ -68,6 +73,8 @@ const AddDriverModal = ({
                     <input name='nationality' onChange={handleChange} type='text' className='form-control' />
                     <label className='form-label'>Points</label>
                     <input name='points' onChange={handleChange} type='number' className='form-control' />
+                    <label className='form-label'>Team</label>
+                    <input name='team' onChange={handleChange} type='text' className='form-control' />
                     <label className='form-label'>Image</label>
                     <input name='image' onChange={handleChange} type='file' className='form-control' />
                 </form>
