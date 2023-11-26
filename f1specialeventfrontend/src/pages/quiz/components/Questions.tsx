@@ -55,7 +55,7 @@ const Questions = ({
                         ))}
                     </div>
                     {selectedAnswer && (
-                        <h4 className='m-5'>
+                        <h4 className='m-2'>
                             {selectedAnswer.isCorrect ? 'Correct!' : 'Wrong!'}
                             {blockAnswer && clickCount > 1 && <span> You have already answered this question!</span>}
                             <br />

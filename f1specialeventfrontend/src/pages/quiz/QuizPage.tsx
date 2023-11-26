@@ -54,7 +54,7 @@ const QuizPage = () => {
                     </header>
 
                     <section
-                        className={`rounded mx-auto text-center p-3  m-5`}
+                        className={`rounded mx-auto text-center p-3`}
                         style={{
                             display: 'flex',
                             width: '100%',
