@@ -49,11 +49,11 @@ const QuizPage = () => {
         <>
             <div className='container'>
                 <div>
-                    <div className='header col-12 mx-auto rounded text-center p-4 border-top border-5 border-danger border-end mb-1 mt-3'>
+                    <header className='header col-12 mx-auto rounded text-center p-4 border-top border-5 border-danger border-end mb-1 mt-3'>
                         <h1>How well do you know the F1 teams?</h1>
-                    </div>
+                    </header>
 
-                    <div
+                    <section
                         className={`rounded mx-auto text-center p-3  m-5`}
                         style={{
                             display: 'flex',
@@ -87,7 +87,7 @@ const QuizPage = () => {
                         ) : (
                             <QuizStart name={name} setName={setName} setIsQuizStarted={setIsQuizStarted} />
                         )}
-                    </div>
+                    </section>
                 </div>
             </div>
             <Footer />
