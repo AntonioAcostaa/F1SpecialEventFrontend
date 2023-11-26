@@ -1,6 +1,7 @@
 import IRace from '../../../interfaces/IRace';
 import format from 'date-fns/format';
 import styles from '../styles/raceList.module.css';
+import ImageService from '../../../services/ImageService';
 
 const RaceCard = ({ race }: { race: IRace }) => {
     return (
@@ -8,7 +9,7 @@ const RaceCard = ({ race }: { race: IRace }) => {
             <div className='row g-0'>
                 <div className='col-md-4'>
                     <img
-                        src={`http://localhost:5014/images/${race.image}`}
+                        src={`${ImageService.imageURL}${race.image}`}
                         className='rounded w-100 h-100 shadow'
                         alt={`Track image. PNG. ${race.grandPrix}`}
                     />

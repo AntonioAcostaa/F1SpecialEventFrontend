@@ -5,6 +5,8 @@ const ImageService =
     (() => {
         const imageEndpoint = 'http://localhost:5014/api/imageUpload';
 
+        const imageURL = 'http://localhost:5014/images/';
+
         const getAllImages = async () => {
             try {
                 const response = await axios.get(imageEndpoint);
@@ -19,6 +21,7 @@ const ImageService =
 
         return {
             getAllImages,
+            imageURL,
         };
     })();
 
