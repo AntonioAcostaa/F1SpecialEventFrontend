@@ -1,0 +1,12 @@
+.answer:hover {
+    background-color: #e7e7e7;
+    cursor: pointer;
+    transition: 0.1s;
+    transform: scale(1.020);
+}
+
+.answersGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+}
