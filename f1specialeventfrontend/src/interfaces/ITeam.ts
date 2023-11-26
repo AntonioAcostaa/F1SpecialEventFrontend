@@ -1,4 +1,4 @@
-interface ITeam {        //Interfacet sikrer typesafety for ITeam-objekter, at typene alltid stemmer over ends med forventet data i backend.
+interface ITeam {
     id?: number;
     manufacturer: string;
     driver1: string;
