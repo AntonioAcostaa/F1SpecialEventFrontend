@@ -11,7 +11,6 @@ const AddRaceModal = ({
     setIsOpen: (isOpen: boolean) => void;
     addRace: (race: IRace, image: File) => void;
 }) => {
-
     const [winnerName, setWinnerName] = useState('');
     const [winnerTime, setWinnerTime] = useState<Date>(new Date());
     const [grandPrix, setGrandPrix] = useState('');
@@ -32,10 +31,21 @@ const AddRaceModal = ({
             case 'numberoflaps':
                 setNumberOfLaps(parseInt(e.currentTarget.value));
                 break;
-            case 'image':
+            case 'image': {
                 if (e.currentTarget.files === null) return;
-                setImage(e.currentTarget.files[0]);
+                const file = e.currentTarget.files[0];
+                if (file.size > 5000000) {
+                    // File size is measured in bytes
+                    alert('File size must be less than 5MB');
+                    return;
+                }
+                if (!file.type.startsWith('image/')) {
+                    alert('File must be an image');
+                    return;
+                }
+                setImage(file);
                 break;
+            }
         }
     };
 

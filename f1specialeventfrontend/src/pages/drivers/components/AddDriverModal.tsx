@@ -36,10 +36,21 @@ const AddDriverModal = ({
             case 'nationality':
                 setNationality(e.currentTarget.value);
                 break;
-            case 'image':
+            case 'image': {
                 if (e.currentTarget.files === null) return;
-                setImage(e.currentTarget.files[0]);
+                const file = e.currentTarget.files[0];
+                if (file.size > 5000000) {
+                    // File size is measured in bytes
+                    alert('File size must be less than 5MB');
+                    return;
+                }
+                if (!file.type.startsWith('image/')) {
+                    alert('File must be an image');
+                    return;
+                }
+                setImage(file);
                 break;
+            }
         }
     };
 
